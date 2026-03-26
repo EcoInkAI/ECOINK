@@ -87,9 +87,22 @@ const Footer = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-gray-500 text-xs">
-                    &copy; 2026 EcoInk. All rights reserved.
-                </p>
+                <div className="flex flex-col md:flex-row items-center gap-4">
+                    <p className="text-gray-500 text-xs">
+                        &copy; 2026 EcoInk. All rights reserved.
+                    </p>
+                    <span className="hidden md:block w-px h-3 bg-white/10" />
+                    <p className="text-gray-500 text-[10px] font-medium tracking-wide">
+                        Built and managed by {" "}
+                        <Link 
+                            href="https://zentecglobal.com.au" 
+                            target="_blank"
+                            className="text-[#7FFF00] font-black uppercase hover:underline transition-all"
+                        >
+                            Zentec Global
+                        </Link>
+                    </p>
+                </div>
                 <div className="flex gap-6 text-xs text-gray-500">
                     <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                     <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
