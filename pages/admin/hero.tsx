@@ -8,12 +8,12 @@ import ImageUploader from '@/components/admin/ImageUploader';
 const RECOMMENDED_COUNT = 6;
 
 const DEFAULT_HERO_CONTENT = [
-    { heading: "Bespoke Kitchen Cabinets", subheading: "Transform your heart of the home with custom-built kitchen cabinetry designed for style and functionality.", image: "/kitchen2.jpg", ctaLink: "/kitchen-cabinets" },
-    { heading: "Luxury Bathroom Vanities", subheading: "Stylish, functional and custom-built bathroom vanities designed for modern Melbourne homes.", image: "/bathromr.jpg", ctaLink: "/bathroom-vanities" },
-    { heading: "Custom Wardrobes", subheading: "Maximize your storage with elegant walk-in and built-in wardrobes tailored to your needs.", image: "/bedroom1.jpg", ctaLink: "/wardrobes" },
-    { heading: "Modern TV Cabinets", subheading: "Sleek entertainment units that perfectly organize your media and enhance your living space.", image: "/library.jpg", ctaLink: "/tv-cabinets" },
-    { heading: "Functional Laundry", subheading: "Efficient and durable laundry storage solutions that make household chores a breeze.", image: "/room copy.jpg", ctaLink: "/laundry-cabinets" },
-    { heading: "Handcrafted Furniture", subheading: "Unique, custom-made furniture pieces that add character and quality to every room.", image: "/room.jpg", ctaLink: "/furniture" }
+    { heading: "EcoInk Ads", subheading: "Predictable lead generation for service businesses through Meta and Google Ads.", image: "/Hero/ads-bg.jpg", ctaLink: "/ecoink-ads" },
+    { heading: "EcoInk Voice", subheading: "AI Voice automation that calls your leads in seconds and books appointments.", image: "/Hero/voice-bg.jpg", ctaLink: "/ecoink-voice" },
+    { heading: "AI Lead Automation", subheading: "Seamless lead-to-CMS workflows that ensure zero manual follow-up is needed.", image: "/Hero/auto-bg.jpg", ctaLink: "/contact" },
+    { heading: "Predictable Growth", subheading: "Turn your demand into a booked job engine with our all-in-one AI solutions.", image: "/Hero/growth-bg.jpg", ctaLink: "/contact" },
+    { heading: "24/7 Virtual Salesman", subheading: "Our AI Voice solution never sleeps, ensuring every lead is contacted instantly.", image: "/Hero/sales-bg.jpg", ctaLink: "/ecoink-voice" },
+    { heading: "Automated Workflows", subheading: "Connect your ads directly to your CRM with automated scheduling and tracking.", image: "/Hero/workflow-bg.jpg", ctaLink: "/contact" }
 ];
 
 interface HeroAdminProps {
@@ -183,7 +183,7 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                 </div>
                 <Button
                     onClick={handleSaveGlobal}
-                    className="w-full sm:w-auto bg-orange-500 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all"
+                    className="w-full sm:w-auto bg-[#7FFF00] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all"
                 >
                     <Save size={18} className="mr-2" /> Save Changes
                 </Button>
@@ -199,7 +199,7 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                             <p className="text-sm text-gray-400">Manage your homepage slider services. We recommend {RECOMMENDED_COUNT} service cards.</p>
                         </div>
                         <div className="flex items-center gap-3 w-full md:w-auto">
-                            <div className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest flex-1 md:flex-none text-center ${heroes.length < RECOMMENDED_COUNT ? 'bg-orange-100 text-orange-600' : 'bg-green-100 text-green-600'}`}>
+                            <div className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest flex-1 md:flex-none text-center ${heroes.length < RECOMMENDED_COUNT ? 'bg-[#7FFF00]/20 text-[#6ee600]' : 'bg-green-100 text-green-600'}`}>
                                 {heroes.length} / {RECOMMENDED_COUNT} Slots
                             </div>
                             {heroes.length < RECOMMENDED_COUNT && (
@@ -225,11 +225,11 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                                 </button>
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-1">Heading</label>
-                                    <input className="w-full text-sm border-gray-300 rounded-md p-2 bg-white border" value={hero.heading} readOnly />
+                                    <input className="w-full text-sm border-gray-300 rounded-md p-2 bg-white border text-gray-900" value={hero.heading} readOnly />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-1">Description</label>
-                                    <textarea className="w-full text-xs border-gray-300 rounded-md p-2 bg-white border h-20 resize-none" value={hero.subheading || ''} readOnly />
+                                    <textarea className="w-full text-xs border-gray-300 rounded-md p-2 bg-white border h-20 resize-none text-gray-900" value={hero.subheading || ''} readOnly />
                                 </div>
 
                                 <div>
@@ -244,7 +244,7 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                                     />
                                 </div>
 
-                                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs" onClick={() => handleUpdateSlide(hero)}>
+                                <Button className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-white text-xs" onClick={() => handleUpdateSlide(hero)}>
                                     Update Service
                                 </Button>
                             </div>
@@ -256,21 +256,21 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                                 <button
                                     key={`placeholder-${i}`}
                                     onClick={handleAddSlide}
-                                    className="border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-gray-300 hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-all min-h-[300px] group"
+                                    className="border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-gray-300 hover:border-[#7FFF00] hover:text-[#7FFF00] hover:bg-[#7FFF00]/10 transition-all min-h-[300px] group"
                                 >
-                                    <div className="w-12 h-12 rounded-full bg-gray-50 group-hover:bg-orange-100 flex items-center justify-center transition-colors">
+                                    <div className="w-12 h-12 rounded-full bg-gray-50 group-hover:bg-[#7FFF00]/20 flex items-center justify-center transition-colors">
                                         <Plus size={24} />
                                     </div>
                                     <div className="text-center">
                                         <span className="font-bold text-sm block">Add Service</span>
-                                        <span className="text-xs text-gray-400 group-hover:text-orange-400">Slot {heroes.length + i + 1}</span>
+                                        <span className="text-xs text-gray-400 group-hover:text-[#7FFF00]/80">Slot {heroes.length + i + 1}</span>
                                     </div>
                                 </button>
                             ))
                         ) : (
                             <button
                                 onClick={handleAddSlide}
-                                className="border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-all min-h-[300px]"
+                                className="border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-[#7FFF00] hover:text-[#7FFF00] hover:bg-[#7FFF00]/10 transition-all min-h-[300px]"
                             >
                                 <Plus size={32} />
                                 <span className="font-bold text-sm">Add New Service</span>
@@ -294,7 +294,7 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                             aspectRatio="video"
                             onRemove={() => setHeroImage('')}
                         />
-                        <p className="text-xs text-orange-500 mt-2">Note: Custom Hero overrides slider background.</p>
+                        <p className="text-xs text-[#7FFF00] mt-2">Note: Custom Hero overrides slider background.</p>
                     </div>
 
                     {/* Visibility */}
@@ -306,7 +306,7 @@ export default function HeroAdmin({ initialHeroes, initialSettings }: HeroAdminP
                                 id="customHero"
                                 checked={customHeroEnabled}
                                 onChange={(e) => setCustomHeroEnabled(e.target.checked)}
-                                className="mt-1 w-4 h-4 text-orange-600 rounded"
+                                className="mt-1 w-4 h-4 text-[#6ee600] rounded"
                             />
                             <div>
                                 <label htmlFor="customHero" className="font-medium text-gray-900 text-sm">Enable Custom Hero</label>

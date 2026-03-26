@@ -102,7 +102,7 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                     <h1 className="text-3xl font-bold text-gray-900">Media Library</h1>
                     <p className="text-gray-500">Manage images, documents, and other project assets.</p>
                 </div>
-                <Button onClick={() => setIsUploading(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-xl">
+                <Button onClick={() => setIsUploading(true)} className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-xl">
                     <Upload size={18} className="mr-2" /> Upload New Media
                 </Button>
             </div>
@@ -120,7 +120,7 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                         <div
                             className={`
                                 border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all
-                                ${dragOver ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-orange-400'}
+                                ${dragOver ? 'border-[#7FFF00] bg-[#7FFF00]/10' : 'border-gray-200 hover:border-[#7FFF00]/80'}
                                 ${uploadProgress ? 'opacity-75 pointer-events-none' : ''}
                             `}
                             onClick={() => fileInputRef.current?.click()}
@@ -130,7 +130,7 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                         >
                             {uploadProgress ? (
                                 <>
-                                    <Loader2 size={48} className="text-orange-500 mx-auto mb-4 animate-spin" />
+                                    <Loader2 size={48} className="text-[#7FFF00] mx-auto mb-4 animate-spin" />
                                     <p className="text-gray-600 font-medium">Uploading to Cloudinary...</p>
                                 </>
                             ) : (
@@ -153,7 +153,7 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                             <Button type="button" variant="ghost" className="rounded-xl px-6" onClick={() => { setIsUploading(false); setUploadError(null); }}>Cancel</Button>
                             <Button
                                 type="button"
-                                className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-8 shadow-lg shadow-orange-500/20"
+                                className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl px-8 shadow-lg shadow-[#7FFF00]/20"
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={uploadProgress}
                             >
@@ -170,14 +170,14 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                     <input
                         type="text"
                         placeholder="Search files..."
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
                 <div className="flex bg-gray-100 p-1 rounded-xl">
-                    <button onClick={() => setView('grid')} className={`p-2 rounded-lg transition-all ${view === 'grid' ? 'bg-white shadow-sm text-orange-600' : 'text-gray-400'}`}><Grid size={20} /></button>
-                    <button onClick={() => setView('list')} className={`p-2 rounded-lg transition-all ${view === 'list' ? 'bg-white shadow-sm text-orange-600' : 'text-gray-400'}`}><List size={20} /></button>
+                    <button onClick={() => setView('grid')} className={`p-2 rounded-lg transition-all ${view === 'grid' ? 'bg-white shadow-sm text-[#6ee600]' : 'text-gray-400'}`}><Grid size={20} /></button>
+                    <button onClick={() => setView('list')} className={`p-2 rounded-lg transition-all ${view === 'list' ? 'bg-white shadow-sm text-[#6ee600]' : 'text-gray-400'}`}><List size={20} /></button>
                 </div>
             </div>
 
@@ -218,7 +218,7 @@ export default function MediaAdmin({ initialMedia }: MediaProps) {
                                     </td>
                                     <td className="px-6 py-4 font-bold text-gray-900 truncate max-w-[200px]">{m.filename}</td>
                                     <td className="px-6 py-4">
-                                        <span className="text-[10px] font-black uppercase px-2 py-1 bg-orange-50 text-orange-600 rounded">{m.type}</span>
+                                        <span className="text-[10px] font-black uppercase px-2 py-1 bg-[#7FFF00]/10 text-[#6ee600] rounded">{m.type}</span>
                                     </td>
                                     <td className="px-6 py-4 text-xs text-gray-400 font-medium"><FormattedDate date={m.createdAt} /></td>
                                     <td className="px-6 py-4 text-right">

@@ -36,7 +36,7 @@ export default function Dashboard({ stats }: DashboardProps) {
                 </div>
                 <div className="flex gap-2">
                     <Link href="/admin/pages/new" className="w-full">
-                        <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                        <Button className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                             <Plus size={18} className="mr-2" /> Quick Page
                         </Button>
                     </Link>
@@ -91,7 +91,7 @@ export default function Dashboard({ stats }: DashboardProps) {
                             <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Services</p>
                             <h3 className="text-3xl font-extrabold text-gray-900 font-outfit">{stats.services}</h3>
                         </div>
-                        <div className="p-3 bg-orange-500 text-white rounded-xl shadow-lg shadow-orange-500/30">
+                        <div className="p-3 bg-[#7FFF00] text-white rounded-xl shadow-lg shadow-[#7FFF00]/30">
                             <Wrench size={20} />
                         </div>
                     </div>
@@ -103,7 +103,7 @@ export default function Dashboard({ stats }: DashboardProps) {
                         <div>
                             <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Inquiries</p>
                             <h3 className="text-3xl font-extrabold text-gray-900 font-outfit">{stats.messages}</h3>
-                            <Link href="/admin/messages" className="text-xs text-orange-600 font-bold mt-2 inline-block hover:underline">View Messages →</Link>
+                            <Link href="/admin/messages" className="text-xs text-[#6ee600] font-bold mt-2 inline-block hover:underline">View Messages →</Link>
                         </div>
                         <div className="p-3 bg-red-500 text-white rounded-xl shadow-lg shadow-red-500/30 relative">
                             <Mail size={20} />
@@ -176,9 +176,9 @@ export default function Dashboard({ stats }: DashboardProps) {
                         </div>
                     </Link>
 
-                    <Link href="/admin/settings" className="bg-white p-6 rounded-xl border border-gray-100 hover:border-orange-500 hover:shadow-md transition-all group">
+                    <Link href="/admin/settings" className="bg-white p-6 rounded-xl border border-gray-100 hover:border-[#7FFF00] hover:shadow-md transition-all group">
                         <div className="flex items-center gap-4">
-                            <div className="p-2 bg-orange-50 text-orange-600 rounded-lg group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                            <div className="p-2 bg-[#7FFF00]/10 text-[#6ee600] rounded-lg group-hover:bg-[#6ee600] group-hover:text-white transition-colors">
                                 <Settings size={24} />
                             </div>
                             <div>

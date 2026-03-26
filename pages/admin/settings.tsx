@@ -36,7 +36,7 @@ export default function SettingsAdmin({ settings: initialSettings }: SettingsPro
                         <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 font-outfit uppercase tracking-tight">Site Settings</h1>
                         <p className="text-gray-500 text-sm md:text-base">Manage global configurations, contact info, and SEO.</p>
                     </div>
-                    <Button type="submit" disabled={isSaving} className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                    <Button type="submit" disabled={isSaving} className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                         {isSaving ? 'Saving...' : <><Save size={18} className="mr-2" /> Save Global Changes</>}
                     </Button>
                 </div>
@@ -54,7 +54,7 @@ export default function SettingsAdmin({ settings: initialSettings }: SettingsPro
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Site Name</label>
                                     <input
-                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50"
+                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50"
                                         value={settings.siteName || ''}
                                         onChange={e => setSettings({ ...settings, siteName: e.target.value })}
                                     />
@@ -62,7 +62,7 @@ export default function SettingsAdmin({ settings: initialSettings }: SettingsPro
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Footer Attribution Content</label>
                                     <textarea
-                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 h-32 resize-none"
+                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 h-32 resize-none"
                                         placeholder="Brief description about the company for the footer..."
                                         value={settings.footerContent || ''}
                                         onChange={e => setSettings({ ...settings, footerContent: e.target.value })}
@@ -71,7 +71,7 @@ export default function SettingsAdmin({ settings: initialSettings }: SettingsPro
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Copyright Text</label>
                                     <input
-                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 font-mono text-sm"
+                                        className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 font-mono text-sm"
                                         placeholder="© 2026 Magri Cabinets. All rights reserved."
                                         value={settings.copyrightText || ''}
                                         onChange={e => setSettings({ ...settings, copyrightText: e.target.value })}
@@ -88,15 +88,15 @@ export default function SettingsAdmin({ settings: initialSettings }: SettingsPro
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide flex items-center gap-2"><Mail size={12} /> Contact Email</label>
-                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50" value={settings.contactEmail || ''} onChange={e => setSettings({ ...settings, contactEmail: e.target.value })} />
+                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50" value={settings.contactEmail || ''} onChange={e => setSettings({ ...settings, contactEmail: e.target.value })} />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide flex items-center gap-2"><Phone size={12} /> Contact Phone</label>
-                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50" value={settings.contactPhone || ''} onChange={e => setSettings({ ...settings, contactPhone: e.target.value })} />
+                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50" value={settings.contactPhone || ''} onChange={e => setSettings({ ...settings, contactPhone: e.target.value })} />
                                 </div>
                                 <div className="col-span-2">
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide flex items-center gap-2"><MapPin size={12} /> Business Address</label>
-                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50" value={settings.address || ''} onChange={e => setSettings({ ...settings, address: e.target.value })} />
+                                    <input className="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50" value={settings.address || ''} onChange={e => setSettings({ ...settings, address: e.target.value })} />
                                 </div>
                             </div>
                         </div>

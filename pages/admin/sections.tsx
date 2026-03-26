@@ -94,7 +94,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                     </Link>
                     <Button
                         onClick={() => handleOpenModal()}
-                        className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all w-full sm:w-auto"
+                        className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all w-full sm:w-auto"
                     >
                         <Plus size={18} className="mr-2" /> <span className="sm:hidden">Add Section</span><span className="hidden sm:inline">Add New Section</span>
                     </Button>
@@ -105,13 +105,13 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                 {sections.map((section) => (
                     <div key={section.id} className="bg-white rounded-[32px] shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300">
                         <div className="p-4 border-b border-gray-50 bg-gray-50/50 flex justify-between items-center">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 bg-orange-50 px-2.5 py-1 rounded-lg">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#6ee600] bg-[#7FFF00]/10 px-2.5 py-1 rounded-lg">
                                 {section.type || 'SECTION'}
                             </span>
                             <div className="flex gap-1 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                                 <button
                                     onClick={() => handleOpenModal(section)}
-                                    className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-colors"
+                                    className="p-2 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-xl transition-colors"
                                 >
                                     <Edit3 size={16} />
                                 </button>
@@ -176,7 +176,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                 <div className="col-span-2">
                                     <label className="block text-xs font-black text-gray-400 uppercase tracking-wider mb-2">Internal Name (Admin Only)</label>
                                     <input
-                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-4 rounded-2xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800"
+                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-4 rounded-2xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800"
                                         placeholder="e.g. Services Grid"
                                         value={current.internalName}
                                         onChange={e => setCurrent({ ...current, internalName: e.target.value })}
@@ -187,7 +187,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                 <div>
                                     <label className="block text-xs font-black text-gray-400 uppercase tracking-wider mb-2">Section Type</label>
                                     <select
-                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-4 rounded-2xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800 appearance-none cursor-pointer"
+                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-4 rounded-2xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800 appearance-none cursor-pointer"
                                         value={current.type}
                                         onChange={e => setCurrent({ ...current, type: e.target.value })}
                                     >
@@ -200,7 +200,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                 </div>
 
                                 <div className="md:col-span-2 space-y-6 pt-4 border-t border-gray-50">
-                                    <h3 className="text-xs font-black text-orange-500 uppercase tracking-widest flex items-center gap-2">
+                                    <h3 className="text-xs font-black text-[#7FFF00] uppercase tracking-widest flex items-center gap-2">
                                         <Info size={14} /> Content Configuration
                                     </h3>
 
@@ -208,7 +208,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                         <div>
                                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Heading</label>
                                             <input
-                                                className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-orange-500 transition-all font-bold text-sm bg-gray-50/50"
+                                                className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-[#7FFF00] transition-all font-bold text-sm bg-gray-50/50"
                                                 value={current.content.heading}
                                                 onChange={e => setCurrent({ ...current, content: { ...current.content, heading: e.target.value } })}
                                             />
@@ -216,7 +216,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                         <div>
                                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Subheading / Description</label>
                                             <textarea
-                                                className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-orange-500 transition-all text-sm h-28 resize-none leading-relaxed bg-gray-50/50"
+                                                className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-[#7FFF00] transition-all text-sm h-28 resize-none leading-relaxed bg-gray-50/50"
                                                 value={current.content.subheading}
                                                 onChange={e => setCurrent({ ...current, content: { ...current.content, subheading: e.target.value } })}
                                             />
@@ -236,7 +236,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                             <div className="col-span-1">
                                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">CTA text</label>
                                                 <input
-                                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-orange-500 transition-all text-sm bg-gray-50/50"
+                                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-[#7FFF00] transition-all text-sm bg-gray-50/50"
                                                     value={current.content.ctaText}
                                                     onChange={e => setCurrent({ ...current, content: { ...current.content, ctaText: e.target.value } })}
                                                 />
@@ -244,7 +244,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                                             <div className="sm:col-span-2">
                                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">CTA Link (URL or Slug)</label>
                                                 <input
-                                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-orange-500 transition-all text-sm bg-gray-50/50"
+                                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:border-[#7FFF00] transition-all text-sm bg-gray-50/50"
                                                     placeholder="/contact or https://..."
                                                     value={current.content.ctaLink}
                                                     onChange={e => setCurrent({ ...current, content: { ...current.content, ctaLink: e.target.value } })}
@@ -261,7 +261,7 @@ export default function SectionsAdmin({ initialSections }: SectionsProps) {
                             <Button
                                 onClick={handleSave}
                                 disabled={isSaving}
-                                className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-10 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-95 w-full sm:w-auto"
+                                className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-10 rounded-2xl shadow-lg shadow-[#7FFF00]/20 transition-all active:scale-95 w-full sm:w-auto"
                             >
                                 {isSaving ? 'Processing...' : <><Save size={18} className="mr-2" /> Save Section</>}
                             </Button>

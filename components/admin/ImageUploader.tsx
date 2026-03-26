@@ -203,10 +203,10 @@ export default function ImageUploader({
                 className={`
                     ${getAspectClass()} 
                     bg-gray-50 rounded-2xl border-2 border-dashed 
-                    ${dragOver ? 'border-orange-500 bg-orange-50' : 'border-gray-200'} 
+                    ${dragOver ? 'border-[#7FFF00] bg-[#7FFF00]/10' : 'border-gray-200'} 
                     ${isUploading ? 'opacity-75' : ''} 
                     flex items-center justify-center cursor-pointer relative overflow-hidden group 
-                    transition-all duration-200 hover:border-orange-400
+                    transition-all duration-200 hover:border-[#7FFF00]/80
                 `}
                 onClick={handleClick}
                 onDrop={handleDrop}
@@ -222,7 +222,7 @@ export default function ImageUploader({
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-orange-500/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                        <div className="absolute inset-0 bg-[#7FFF00]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                             <span className="text-white text-[10px] font-black uppercase tracking-widest">
                                 {isUploading ? 'Uploading...' : 'Change Image'}
                             </span>
@@ -243,7 +243,7 @@ export default function ImageUploader({
                     </>
                 ) : isUploading ? (
                     <div className="text-center">
-                        <Loader2 size={40} className="text-orange-500 mx-auto mb-2 animate-spin" />
+                        <Loader2 size={40} className="text-[#7FFF00] mx-auto mb-2 animate-spin" />
                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Uploading...</p>
                     </div>
                 ) : (
@@ -274,7 +274,7 @@ export default function ImageUploader({
                         className="w-full flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
                         <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2">
-                            <Settings size={12} className="text-orange-500" /> Image SEO & Metadata
+                            <Settings size={12} className="text-[#7FFF00]" /> Image SEO & Metadata
                         </span>
                         {showSeo ? <ChevronUp size={14} className="text-gray-400" /> : <ChevronDown size={14} className="text-gray-400" />}
                     </button>
@@ -284,7 +284,7 @@ export default function ImageUploader({
                             <div>
                                 <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Alt Text (Best for SEO)</label>
                                 <input
-                                    className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-orange-500 outline-none transition-all"
+                                    className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-[#7FFF00] outline-none transition-all"
                                     value={metadata.altText}
                                     onChange={(e) => handleMetadataChange('altText', e.target.value)}
                                     placeholder="e.g. Custom white kitchen cabinets in Melbourne"
@@ -294,7 +294,7 @@ export default function ImageUploader({
                                 <div>
                                     <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Title</label>
                                     <input
-                                        className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-orange-500 outline-none transition-all"
+                                        className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-[#7FFF00] outline-none transition-all"
                                         value={metadata.title}
                                         onChange={(e) => handleMetadataChange('title', e.target.value)}
                                         placeholder="Image Title"
@@ -303,7 +303,7 @@ export default function ImageUploader({
                                 <div>
                                     <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Caption</label>
                                     <input
-                                        className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-orange-500 outline-none transition-all"
+                                        className="w-full border border-gray-100 bg-gray-50/30 p-2 rounded-lg text-xs font-medium focus:border-[#7FFF00] outline-none transition-all"
                                         value={metadata.caption}
                                         onChange={(e) => handleMetadataChange('caption', e.target.value)}
                                         placeholder="Image Caption"
@@ -325,7 +325,7 @@ export default function ImageUploader({
                     type="button"
                     variant="outline"
                     onClick={handleClick}
-                    className="w-full mt-2 rounded-xl border-gray-200 hover:border-orange-400 hover:bg-orange-50 transition-all font-bold text-xs uppercase tracking-widest"
+                    className="w-full mt-2 rounded-xl border-gray-200 hover:border-[#7FFF00]/80 hover:bg-[#7FFF00]/10 transition-all font-bold text-xs uppercase tracking-widest"
                 >
                     <Upload size={16} className="mr-2" /> Browse Files
                 </Button>

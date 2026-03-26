@@ -176,7 +176,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         <Button
                             type="button"
                             variant="ghost"
-                            className={`h-11 rounded-1xl px-4 font-bold text-[10px] uppercase tracking-widest ${post.isPublished ? 'text-green-600 bg-green-50' : 'text-orange-600 bg-orange-50'}`}
+                            className={`h-11 rounded-1xl px-4 font-bold text-[10px] uppercase tracking-widest ${post.isPublished ? 'text-green-600 bg-green-50' : 'text-[#6ee600] bg-[#7FFF00]/10'}`}
                             onClick={() => setPost({ ...post, isPublished: !post.isPublished })}
                         >
                             {post.isPublished ? <CheckCircle size={16} className="mr-2" /> : <Eye size={16} className="mr-2" />}
@@ -185,7 +185,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         <Button
                             type="submit"
                             disabled={isSaving}
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
+                            className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
                         >
                             {isSaving ? 'Saving...' : <><Save size={16} className="mr-2" /> Save Changes</>}
                         </Button>
@@ -243,7 +243,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                                 <button
                                     type="button"
                                     onClick={() => setActiveSeoTab('general')}
-                                    className={`text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors ${activeSeoTab === 'general' ? 'bg-white shadow-sm text-orange-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                                    className={`text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors ${activeSeoTab === 'general' ? 'bg-white shadow-sm text-[#6ee600]' : 'text-gray-500 hover:bg-gray-100'}`}
                                 >
                                     <Search size={14} className="inline mr-2" /> General SEO
                                 </button>
@@ -272,7 +272,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                                                 <span className={`text-xs ${post.metaTitle?.length > 60 ? 'text-red-500' : 'text-green-500'}`}>{post.metaTitle?.length || 0} / 60</span>
                                             </div>
                                             <input
-                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-orange-500 outline-none"
+                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-[#7FFF00] outline-none"
                                                 value={post.metaTitle || ''}
                                                 onChange={e => setPost({ ...post, metaTitle: e.target.value })}
                                                 placeholder="SEO Title (defaults to Title)"
@@ -284,7 +284,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                                                 <span className={`text-xs ${post.metaDescription?.length > 160 ? 'text-red-500' : 'text-green-500'}`}>{post.metaDescription?.length || 0} / 160</span>
                                             </div>
                                             <textarea
-                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-orange-500 outline-none h-24 resize-none"
+                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-[#7FFF00] outline-none h-24 resize-none"
                                                 value={post.metaDescription || ''}
                                                 onChange={e => setPost({ ...post, metaDescription: e.target.value })}
                                                 placeholder="A short summary for search engines."
@@ -293,7 +293,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                                         <div>
                                             <label className="text-xs font-bold text-gray-700 uppercase mb-2 block">Focus Keyword</label>
                                             <input
-                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-orange-500 outline-none"
+                                                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:border-[#7FFF00] outline-none"
                                                 value={post.focusKeyword || ''}
                                                 onChange={e => setPost({ ...post, focusKeyword: e.target.value })}
                                                 placeholder="Main keyword target"
@@ -395,7 +395,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         {/* Publish Box */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Globe size={14} className="text-orange-500" /> Publishing
+                                <Globe size={14} className="text-[#7FFF00]" /> Publishing
                             </h3>
 
                             <div>
@@ -425,7 +425,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         {/* Organization */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Tag size={14} className="text-orange-500" /> Organization
+                                <Tag size={14} className="text-[#7FFF00]" /> Organization
                             </h3>
 
                             <div>
@@ -452,7 +452,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         {/* Featured Image */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <ImageIcon size={14} className="text-orange-500" /> Featured Image
+                                <ImageIcon size={14} className="text-[#7FFF00]" /> Featured Image
                             </h3>
                             <ImageUploader
                                 currentImage={post.coverImage}
@@ -467,10 +467,10 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
                         {/* Excerpt */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Type size={14} className="text-orange-500" /> Excerpt
+                                <Type size={14} className="text-[#7FFF00]" /> Excerpt
                             </h3>
                             <textarea
-                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-orange-200"
+                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-[#7FFF00]/20"
                                 placeholder="Short summary for listing cards..."
                                 value={post.excerpt}
                                 onChange={e => setPost({ ...post, excerpt: e.target.value })}
@@ -479,7 +479,7 @@ export default function EditBlog({ post: initialPost }: BlogFormProps) {
 
                         {/* Stats Helper */}
                         <div className="bg-gray-900 p-6 rounded-[24px] shadow-sm border border-gray-800 space-y-4 text-white">
-                            <h3 className="text-xs font-black text-orange-500 uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <h3 className="text-xs font-black text-[#7FFF00] uppercase tracking-widest flex items-center gap-2 mb-4">
                                 <Activity size={14} /> Content Stats
                             </h3>
                             <div className="grid grid-cols-2 gap-4">

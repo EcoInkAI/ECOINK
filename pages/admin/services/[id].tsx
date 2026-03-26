@@ -211,7 +211,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         <Button
                             type="submit"
                             disabled={isSaving}
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
+                            className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
                         >
                             {isSaving ? 'Saving...' : <><Save size={16} className="mr-2" /> Save Service</>}
                         </Button>
@@ -349,7 +349,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                                     <div key={i} className="bg-gray-50 p-4 rounded-xl border border-gray-100 relative group">
                                         <div className="space-y-3 pr-8">
                                             <input
-                                                className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm font-bold placeholder:font-normal focus:ring-1 focus:ring-orange-200 outline-none"
+                                                className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm font-bold placeholder:font-normal focus:ring-1 focus:ring-[#7FFF00]/20 outline-none"
                                                 placeholder="Question"
                                                 value={faq.question}
                                                 onChange={e => {
@@ -359,7 +359,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                                                 }}
                                             />
                                             <textarea
-                                                className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm h-20 resize-none focus:ring-1 focus:ring-orange-200 outline-none"
+                                                className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm h-20 resize-none focus:ring-1 focus:ring-[#7FFF00]/20 outline-none"
                                                 placeholder="Answer"
                                                 value={faq.answer}
                                                 onChange={e => {
@@ -399,7 +399,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         {/* Status/Order Box */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Globe size={14} className="text-orange-500" /> Settings
+                                <Globe size={14} className="text-[#7FFF00]" /> Settings
                             </h3>
 
                             <div>
@@ -429,7 +429,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         {/* Hero Section Images */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <ImageIcon size={14} className="text-orange-500" /> Hero Image
+                                <ImageIcon size={14} className="text-[#7FFF00]" /> Hero Image
                             </h3>
                             <ImageUploader
                                 currentImage={service.heroImage || service.image}
@@ -444,7 +444,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                             <div className="pt-2 border-t border-gray-100">
                                 <label className="text-[10px] font-bold text-gray-500 uppercase mb-1 block">Hero Subtitle (optional)</label>
                                 <textarea
-                                    className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-20 resize-none outline-none focus:ring-1 focus:ring-orange-200"
+                                    className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-20 resize-none outline-none focus:ring-1 focus:ring-[#7FFF00]/20"
                                     placeholder="Custom subtitle for hero section..."
                                     value={service.heroSubtitle || ''}
                                     onChange={e => setService({ ...service, heroSubtitle: e.target.value })}
@@ -454,7 +454,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                             <div className="pt-2 border-t border-gray-100">
                                 <label className="text-[10px] font-bold text-gray-500 uppercase mb-1 block">Hero Badge Text (optional)</label>
                                 <input
-                                    className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 outline-none focus:ring-1 focus:ring-orange-200"
+                                    className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 outline-none focus:ring-1 focus:ring-[#7FFF00]/20"
                                     placeholder="e.g., Premier Cabinet Makers"
                                     value={service.heroBadge || ''}
                                     onChange={e => setService({ ...service, heroBadge: e.target.value })}
@@ -466,7 +466,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         {/* Card/Thumbnail Image */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <ImageIcon size={14} className="text-orange-500" /> Card Image
+                                <ImageIcon size={14} className="text-[#7FFF00]" /> Card Image
                             </h3>
                             <ImageUploader
                                 currentImage={service.image}
@@ -482,10 +482,10 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         {/* Summary/Description */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Type size={14} className="text-orange-500" /> Homepage Summary
+                                <Type size={14} className="text-[#7FFF00]" /> Homepage Summary
                             </h3>
                             <textarea
-                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-orange-200"
+                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-[#7FFF00]/20"
                                 placeholder="Short summary for homepage cards..."
                                 value={service.description}
                                 onChange={e => setService({ ...service, description: e.target.value })}
@@ -495,7 +495,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         {/* CTA Section Settings */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Wrench size={14} className="text-orange-500" /> CTA Section
+                                <Wrench size={14} className="text-[#7FFF00]" /> CTA Section
                             </h3>
                             <div>
                                 <label className="text-[10px] font-bold text-gray-500 uppercase mb-1 block">CTA Title</label>
@@ -563,12 +563,12 @@ export default function EditService({ service: initialService }: ServiceFormProp
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
-                                    <CheckCircle size={14} className="text-orange-500" /> Trust Badges
+                                    <CheckCircle size={14} className="text-[#7FFF00]" /> Trust Badges
                                 </h3>
                                 <button
                                     type="button"
                                     onClick={() => setService({ ...service, trustBadges: [...(service.trustBadges || []), { text: '' }] })}
-                                    className="text-xs text-orange-500 hover:text-orange-600 font-bold"
+                                    className="text-xs text-[#7FFF00] hover:text-[#6ee600] font-bold"
                                 >
                                     + Add Badge
                                 </button>
@@ -602,7 +602,7 @@ export default function EditService({ service: initialService }: ServiceFormProp
 
                         {/* Content Stats */}
                         <div className="bg-gray-900 p-6 rounded-[24px] shadow-sm border border-gray-800 space-y-4 text-white">
-                            <h3 className="text-xs font-black text-orange-500 uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <h3 className="text-xs font-black text-[#7FFF00] uppercase tracking-widest flex items-center gap-2 mb-4">
                                 <Activity size={14} /> Page Stats
                             </h3>
                             <div className="grid grid-cols-2 gap-4">

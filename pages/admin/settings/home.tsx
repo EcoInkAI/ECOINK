@@ -55,7 +55,7 @@ export default function HomeSettings({ initialPage }: { initialPage: any }) {
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-3xl font-black text-gray-900 font-outfit uppercase tracking-tight flex items-center gap-3">
-                            <Home className="text-orange-500" /> Home SEO Settings
+                            <Home className="text-[#7FFF00]" /> Home SEO Settings
                         </h1>
                         <p className="text-sm text-gray-500">Manage how your homepage appears in search results and social media.</p>
                     </div>
@@ -66,7 +66,7 @@ export default function HomeSettings({ initialPage }: { initialPage: any }) {
                         <Button
                             onClick={handleSave}
                             disabled={isSaving}
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-11 px-6 rounded-xl shadow-lg shadow-orange-500/20"
+                            className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-11 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20"
                         >
                             {isSaving ? 'Saving...' : <><Save size={18} className="mr-2" /> Save Settings</>}
                         </Button>
@@ -77,26 +77,26 @@ export default function HomeSettings({ initialPage }: { initialPage: any }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Quick Stats */}
                     <div className="bg-gray-900 p-6 rounded-[24px] shadow-sm border border-gray-800 space-y-4 text-white">
-                        <h3 className="text-xs font-black text-orange-500 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <h3 className="text-xs font-black text-[#7FFF00] uppercase tracking-widest flex items-center gap-2 mb-4">
                             <Activity size={14} /> SEO Health
                         </h3>
                         <div className="space-y-4">
                             <div>
                                 <div className="flex justify-between text-[10px] uppercase font-bold mb-1">
                                     <span>SEO Score</span>
-                                    <span className={page.seoScore > 70 ? 'text-green-400' : 'text-orange-400'}>{page.seoScore}%</span>
+                                    <span className={page.seoScore > 70 ? 'text-green-400' : 'text-[#7FFF00]/80'}>{page.seoScore}%</span>
                                 </div>
                                 <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                    <div className={`h-full transition-all duration-500 ${page.seoScore > 70 ? 'bg-green-500' : 'bg-orange-500'}`} style={{ width: `${page.seoScore}%` }} />
+                                    <div className={`h-full transition-all duration-500 ${page.seoScore > 70 ? 'bg-green-500' : 'bg-[#7FFF00]'}`} style={{ width: `${page.seoScore}%` }} />
                                 </div>
                             </div>
                             <div>
                                 <div className="flex justify-between text-[10px] uppercase font-bold mb-1">
                                     <span>Readability</span>
-                                    <span className={page.readabilityScore > 70 ? 'text-green-400' : 'text-orange-400'}>{page.readabilityScore}%</span>
+                                    <span className={page.readabilityScore > 70 ? 'text-green-400' : 'text-[#7FFF00]/80'}>{page.readabilityScore}%</span>
                                 </div>
                                 <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                                    <div className={`h-full transition-all duration-500 ${page.readabilityScore > 70 ? 'bg-green-500' : 'bg-orange-500'}`} style={{ width: `${page.readabilityScore}%` }} />
+                                    <div className={`h-full transition-all duration-500 ${page.readabilityScore > 70 ? 'bg-green-500' : 'bg-[#7FFF00]'}`} style={{ width: `${page.readabilityScore}%` }} />
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ export default function HomeSettings({ initialPage }: { initialPage: any }) {
                     {/* Tips */}
                     <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
                         <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                            <Globe size={14} className="text-orange-500" /> Best Practices
+                            <Globe size={14} className="text-[#7FFF00]" /> Best Practices
                         </h3>
                         <ul className="text-xs text-gray-500 space-y-3 list-disc pl-4">
                             <li>Ensure the **SEO Title** contains "Cabinet Makers Melbourne".</li>

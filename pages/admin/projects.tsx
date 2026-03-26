@@ -30,7 +30,7 @@ export default function ProjectsAdmin({ initialProjects }: ProjectsProps) {
 
     const getScoreColor = (score: number) => {
         if (score >= 80) return 'text-green-600 bg-green-100';
-        if (score >= 50) return 'text-orange-600 bg-orange-100';
+        if (score >= 50) return 'text-[#6ee600] bg-[#7FFF00]/20';
         return 'text-red-600 bg-red-100';
     };
 
@@ -48,7 +48,7 @@ export default function ProjectsAdmin({ initialProjects }: ProjectsProps) {
                         </Button>
                     </Link>
                     <Link href="/admin/projects/new" className="w-full sm:w-auto">
-                        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                        <Button className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                             <Plus size={18} className="mr-2" /> Add Project
                         </Button>
                     </Link>
@@ -82,7 +82,7 @@ export default function ProjectsAdmin({ initialProjects }: ProjectsProps) {
                         </div>
 
                         <div className="p-6 md:p-8">
-                            <h3 className="text-xl font-black text-gray-900 mb-2 leading-tight font-outfit uppercase tracking-tight group-hover:text-orange-600 transition-colors">
+                            <h3 className="text-xl font-black text-gray-900 mb-2 leading-tight font-outfit uppercase tracking-tight group-hover:text-[#6ee600] transition-colors">
                                 {project.title}
                             </h3>
                             <p className="text-gray-500 text-sm mb-8 line-clamp-2 leading-relaxed">
@@ -91,7 +91,7 @@ export default function ProjectsAdmin({ initialProjects }: ProjectsProps) {
 
                             <div className="flex gap-3">
                                 <Link href={`/admin/projects/${project.id}`} className="flex-1">
-                                    <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-2xl shadow-lg shadow-orange-500/10 transition-all active:scale-95">
+                                    <Button className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-2xl shadow-lg shadow-[#7FFF00]/10 transition-all active:scale-95">
                                         <Edit size={18} />
                                     </Button>
                                 </Link>

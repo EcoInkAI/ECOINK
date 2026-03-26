@@ -11,9 +11,17 @@ interface LayoutProps {
 
 export default function Layout({ children, pageProps }: LayoutProps) {
     const router = useRouter();
-    // Assuming no admin panel or keep it if needed, but safe to ignore for now.
+    const isAdmin = router.pathname.startsWith('/admin');
 
-    const isHome = router.pathname === "/";
+    if (isAdmin) {
+        return (
+            <div className="min-h-screen flex flex-col bg-background text-foreground">
+                <main className="flex-1 w-full max-w-[100vw] overflow-x-hidden">
+                    {children}
+                </main>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -22,10 +30,6 @@ export default function Layout({ children, pageProps }: LayoutProps) {
                 <meta name="description" content="Turn demand into booked jobs automatically." />
             </Head>
             <Navbar />
-            {/* Remove top padding for home if we want hero to be behind nav, otherwise keep it. 
-                For glassmorphism headers, usually we want content to go behind. 
-                I will remove pt-20 and let specific pages handle top spacing or use a layout wrapper.
-            */}
             <main className="flex-1 w-full max-w-[100vw] overflow-x-hidden">
                 {children}
             </main>

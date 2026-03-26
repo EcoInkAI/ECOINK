@@ -44,7 +44,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                         <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 font-outfit uppercase tracking-tight">Footer Management</h1>
                         <p className="text-gray-500 text-sm md:text-base">Configure global footer content and social media links.</p>
                     </div>
-                    <Button type="submit" disabled={isSaving} className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                    <Button type="submit" disabled={isSaving} className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                         {isSaving ? 'Saving...' : <><Save size={18} className="mr-2" /> Save Changes</>}
                     </Button>
                 </div>
@@ -60,7 +60,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                             <div>
                                 <label className="block text-xs font-black text-gray-400 mb-2 uppercase tracking-widest">Footer Bio Content</label>
                                 <textarea
-                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 h-32 resize-none bg-gray-50 font-medium"
+                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 h-32 resize-none bg-gray-50 font-medium"
                                     placeholder="Brief company bio for footer..."
                                     value={settings.footerContent || ''}
                                     onChange={e => setSettings({ ...settings, footerContent: e.target.value })}
@@ -69,7 +69,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                             <div>
                                 <label className="block text-xs font-black text-gray-400 mb-2 uppercase tracking-widest">Copyright Text</label>
                                 <input
-                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 font-mono text-sm bg-gray-50"
+                                    className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 font-mono text-sm bg-gray-50"
                                     placeholder="© 2026 Magri Cabinets. All rights reserved."
                                     value={settings.copyrightText || ''}
                                     onChange={e => setSettings({ ...settings, copyrightText: e.target.value })}
@@ -81,7 +81,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                     {/* Social Media Links */}
                     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 h-fit">
                         <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2 font-outfit uppercase">
-                            <LinkIcon size={20} className="text-orange-500" /> Social Networks
+                            <LinkIcon size={20} className="text-[#7FFF00]" /> Social Networks
                         </h2>
                         <div className="space-y-6">
                             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -90,7 +90,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                                 </div>
                                 <div className="flex-1">
                                     <label className="block text-[10px] font-black text-gray-400 uppercase mb-1 tracking-widest">Facebook URL</label>
-                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-orange-500 transition-colors bg-transparent" value={settings.socialLinks?.facebook || ''} onChange={e => updateSocial('facebook', e.target.value)} placeholder="https://facebook.com/..." />
+                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-[#7FFF00] transition-colors bg-transparent" value={settings.socialLinks?.facebook || ''} onChange={e => updateSocial('facebook', e.target.value)} placeholder="https://facebook.com/..." />
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -99,7 +99,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                                 </div>
                                 <div className="flex-1">
                                     <label className="block text-[10px] font-black text-gray-400 uppercase mb-1 tracking-widest">Instagram URL</label>
-                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-orange-500 transition-colors bg-transparent" value={settings.socialLinks?.instagram || ''} onChange={e => updateSocial('instagram', e.target.value)} placeholder="https://instagram.com/..." />
+                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-[#7FFF00] transition-colors bg-transparent" value={settings.socialLinks?.instagram || ''} onChange={e => updateSocial('instagram', e.target.value)} placeholder="https://instagram.com/..." />
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -108,7 +108,7 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                                 </div>
                                 <div className="flex-1">
                                     <label className="block text-[10px] font-black text-gray-400 uppercase mb-1 tracking-widest">LinkedIn URL</label>
-                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-orange-500 transition-colors bg-transparent" value={settings.socialLinks?.linkedin || ''} onChange={e => updateSocial('linkedin', e.target.value)} placeholder="https://linkedin.com/..." />
+                                    <input className="w-full border-b border-gray-100 py-1 outline-none focus:border-[#7FFF00] transition-colors bg-transparent" value={settings.socialLinks?.linkedin || ''} onChange={e => updateSocial('linkedin', e.target.value)} placeholder="https://linkedin.com/..." />
                                 </div>
                             </div>
                         </div>
@@ -122,15 +122,15 @@ export default function FooterAdmin({ settings: initialSettings }: FooterProps) 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <div>
                                 <label className="block text-xs font-black text-gray-400 mb-2 uppercase tracking-widest flex items-center gap-2"><Mail size={12} /> Email Address</label>
-                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 bg-gray-50" value={settings.contactEmail || ''} onChange={e => setSettings({ ...settings, contactEmail: e.target.value })} />
+                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 bg-gray-50" value={settings.contactEmail || ''} onChange={e => setSettings({ ...settings, contactEmail: e.target.value })} />
                             </div>
                             <div>
                                 <label className="block text-xs font-black text-gray-400 mb-2 uppercase tracking-widest flex items-center gap-2"><Phone size={12} /> Phone Number</label>
-                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 bg-gray-50" value={settings.contactPhone || ''} onChange={e => setSettings({ ...settings, contactPhone: e.target.value })} />
+                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 bg-gray-50" value={settings.contactPhone || ''} onChange={e => setSettings({ ...settings, contactPhone: e.target.value })} />
                             </div>
                             <div className="md:col-span-2 lg:col-span-1">
                                 <label className="block text-xs font-black text-gray-400 mb-2 uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Physical Address</label>
-                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 bg-gray-50" value={settings.address || ''} onChange={e => setSettings({ ...settings, address: e.target.value })} />
+                                <input className="w-full border border-gray-100 p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 bg-gray-50" value={settings.address || ''} onChange={e => setSettings({ ...settings, address: e.target.value })} />
                             </div>
                         </div>
                     </div>

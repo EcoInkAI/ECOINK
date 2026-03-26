@@ -54,7 +54,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
 
     const getScoreColor = (score: number) => {
         if (score >= 80) return 'text-green-500 bg-green-50 border-green-200';
-        if (score >= 50) return 'text-orange-500 bg-orange-50 border-orange-200';
+        if (score >= 50) return 'text-[#7FFF00] bg-[#7FFF00]/10 border-orange-200';
         return 'text-red-500 bg-red-50 border-red-200';
     };
 
@@ -73,7 +73,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
+                    <div className="w-12 h-12 bg-[#7FFF00] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#7FFF00]/20">
                         <Search size={22} />
                     </div>
                     <div>
@@ -103,7 +103,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                 type="button"
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`w-full flex items-center gap-3 px-4 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === tab.id
-                                    ? 'bg-white text-orange-500 shadow-sm border border-orange-100'
+                                    ? 'bg-white text-[#7FFF00] shadow-sm border border-[#7FFF00]/20'
                                     : 'text-gray-500 hover:bg-white hover:text-gray-900 border border-transparent'
                                     }`}
                             >
@@ -112,7 +112,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                             </button>
                         ))}
 
-                        <div className="mt-8 p-4 bg-orange-50 rounded-2xl border border-orange-100 italic text-[10px] text-orange-700 leading-relaxed font-medium">
+                        <div className="mt-8 p-4 bg-[#7FFF00]/10 rounded-2xl border border-[#7FFF00]/20 italic text-[10px] text-orange-700 leading-relaxed font-medium">
                             <Info size={14} className="mb-2" />
                             Use these settings to target high-value keywords in Melbourne. A good score improves visibility!
                         </div>
@@ -130,7 +130,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                             <span className="text-xs text-gray-400 italic">Main target keyword</span>
                                         </div>
                                         <input
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all placeholder:text-gray-300"
                                             value={data.focusKeyphrase || ''}
                                             onChange={e => handleChange('focusKeyphrase', e.target.value)}
                                             placeholder="e.g. custom kitchen cabinets melbourne"
@@ -140,12 +140,12 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-end">
                                             <label className="text-xs font-black text-gray-500 uppercase tracking-widest">SEO Title</label>
-                                            <span className={`text-xs font-bold ${(data.seoTitle?.length || 0) > 60 ? 'text-orange-500' : 'text-gray-400'}`}>
+                                            <span className={`text-xs font-bold ${(data.seoTitle?.length || 0) > 60 ? 'text-[#7FFF00]' : 'text-gray-400'}`}>
                                                 {data.seoTitle?.length || 0} / 60 recommended
                                             </span>
                                         </div>
                                         <input
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all font-outfit placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all font-outfit placeholder:text-gray-300"
                                             value={data.seoTitle || ''}
                                             onChange={e => handleChange('seoTitle', e.target.value)}
                                             placeholder="Bespoke Kitchen Cabinets & Vanities | Magri Cabinets Melbourne"
@@ -155,12 +155,12 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-end">
                                             <label className="text-xs font-black text-gray-500 uppercase tracking-widest">Meta Description</label>
-                                            <span className={`text-xs font-bold ${(data.seoDescription?.length || 0) > 160 ? 'text-orange-500' : 'text-gray-400'}`}>
+                                            <span className={`text-xs font-bold ${(data.seoDescription?.length || 0) > 160 ? 'text-[#7FFF00]' : 'text-gray-400'}`}>
                                                 {data.seoDescription?.length || 0} / 160 recommended
                                             </span>
                                         </div>
                                         <textarea
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-medium text-gray-700 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all min-h-[120px] resize-none leading-relaxed placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-medium text-gray-700 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all min-h-[120px] resize-none leading-relaxed placeholder:text-gray-300"
                                             value={data.seoDescription || ''}
                                             onChange={e => handleChange('seoDescription', e.target.value)}
                                             placeholder="Transform your Melbourne home with premium custom-built kitchen cabinetry. Over 10 years experience in Ballan and across Melbourne suburbs..."
@@ -177,8 +177,8 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                                 <Eye size={12} /> Google Search Preview
                                             </span>
                                             <div className="flex bg-white rounded-lg p-1 border border-gray-200">
-                                                <button onClick={() => setPreviewMode('desktop')} className={`p-1.5 rounded-md ${previewMode === 'desktop' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}><Monitor size={14} /></button>
-                                                <button onClick={() => setPreviewMode('mobile')} className={`p-1.5 rounded-md ${previewMode === 'mobile' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}><Smartphone size={14} /></button>
+                                                <button onClick={() => setPreviewMode('desktop')} className={`p-1.5 rounded-md ${previewMode === 'desktop' ? 'bg-[#7FFF00] text-white shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}><Monitor size={14} /></button>
+                                                <button onClick={() => setPreviewMode('mobile')} className={`p-1.5 rounded-md ${previewMode === 'mobile' ? 'bg-[#7FFF00] text-white shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}><Smartphone size={14} /></button>
                                             </div>
                                         </div>
                                         <div className="p-8 space-y-3">
@@ -202,7 +202,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                                 <div key={check.id} className="flex items-start gap-4 group">
                                                     <div className="mt-0.5">
                                                         {check.status === 'good' && <CheckCircle size={16} className="text-green-500" />}
-                                                        {check.status === 'warning' && <AlertTriangle size={16} className="text-orange-500" />}
+                                                        {check.status === 'warning' && <AlertTriangle size={16} className="text-[#7FFF00]" />}
                                                         {check.status === 'error' && <XCircle size={16} className="text-red-500" />}
                                                     </div>
                                                     <div>
@@ -238,7 +238,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                         <div className="space-y-4">
                                             <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Facebook Title</label>
                                             <input
-                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all placeholder:text-gray-300"
+                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all placeholder:text-gray-300"
                                                 value={data.ogTitle || ''}
                                                 onChange={e => handleChange('ogTitle', e.target.value)}
                                                 placeholder={data.seoTitle || ''}
@@ -247,7 +247,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                         <div className="space-y-4">
                                             <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Facebook Description</label>
                                             <textarea
-                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-medium text-gray-600 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all min-h-[100px] resize-none placeholder:text-gray-300"
+                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-medium text-gray-600 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all min-h-[100px] resize-none placeholder:text-gray-300"
                                                 value={data.ogDescription || ''}
                                                 onChange={e => handleChange('ogDescription', e.target.value)}
                                                 placeholder={data.seoDescription || ''}
@@ -278,7 +278,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                         <div className="space-y-4">
                                             <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Meta Robots Settings</label>
                                             <select
-                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all appearance-none"
+                                                className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all appearance-none"
                                                 value={data.metaRobots || 'index,follow'}
                                                 onChange={e => handleChange('metaRobots', e.target.value)}
                                             >
@@ -299,7 +299,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                     <div className="space-y-4">
                                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Canonical URL</label>
                                         <input
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all placeholder:text-gray-300"
                                             value={data.canonicalUrl || ''}
                                             onChange={e => handleChange('canonicalUrl', e.target.value)}
                                             placeholder="Leave blank for automatic generation"
@@ -310,7 +310,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                     <div className="space-y-4">
                                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Breadcrumb Title</label>
                                         <input
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all placeholder:text-gray-300"
                                             value={data.breadcrumbTitle || ''}
                                             onChange={e => handleChange('breadcrumbTitle', e.target.value)}
                                             placeholder={data.title || ''}
@@ -319,7 +319,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                 </div>
 
                                 <div className="space-y-8">
-                                    <div className="bg-orange-50 rounded-[32px] p-8 border border-orange-100 space-y-4">
+                                    <div className="bg-[#7FFF00]/10 rounded-[32px] p-8 border border-[#7FFF00]/20 space-y-4">
                                         <h4 className="text-orange-900 font-black uppercase text-xs flex items-center gap-2">
                                             <CheckCircle size={16} /> Technical Optimization
                                         </h4>
@@ -337,7 +337,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                     <div className="space-y-4">
                                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Special Schema Type</label>
                                         <select
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all appearance-none"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-sm font-bold text-gray-900 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all appearance-none"
                                             value={data.schemaType || 'WebPage'}
                                             onChange={e => handleChange('schemaType', e.target.value)}
                                         >
@@ -356,7 +356,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                             <span className="text-[10px] text-gray-400 font-bold decoration-orange-300 underline underline-offset-4 cursor-help">Need Help?</span>
                                         </div>
                                         <textarea
-                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-xs font-mono text-gray-600 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 shadow-sm transition-all min-h-[250px] resize-none leading-relaxed placeholder:text-gray-300"
+                                            className="w-full border border-gray-200 bg-white rounded-xl p-4 text-xs font-mono text-gray-600 outline-none focus:border-[#7FFF00] focus:ring-4 focus:ring-[#7FFF00]/10 shadow-sm transition-all min-h-[250px] resize-none leading-relaxed placeholder:text-gray-300"
                                             value={typeof data.schemaJson === 'string' ? data.schemaJson : JSON.stringify(data.schemaJson || {}, null, 2)}
                                             onChange={e => handleChange('schemaJson', e.target.value)}
                                             placeholder={`{ "@context": "https://schema.org", "@type": "Service", "name": "..." }`}
@@ -367,7 +367,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                 <div className="space-y-6">
                                     <div className="bg-gray-900 rounded-[32px] p-8 text-white space-y-6 shadow-2xl shadow-gray-200">
                                         <div className="flex items-center gap-3 border-b border-gray-800 pb-4">
-                                            <Code size={20} className="text-orange-500" />
+                                            <Code size={20} className="text-[#7FFF00]" />
                                             <h4 className="text-sm font-black uppercase tracking-widest font-outfit">Visual Schema Builder</h4>
                                         </div>
                                         <div className="space-y-4">
@@ -378,7 +378,7 @@ export default function SeoMetaBox({ data, onChange, content = '' }: SeoMetaBoxP
                                             <p className="text-xs text-gray-300 leading-relaxed font-light">
                                                 Our AI-powered schema engine automatically extracts breadcrumbs, navigation, and service data for Google. Any custom JSON added will be merged with our automated schema.
                                             </p>
-                                            <button className="w-full bg-white/10 hover:bg-orange-500 text-white rounded-xl py-3 text-[10px] font-black uppercase tracking-widest transition-all">
+                                            <button className="w-full bg-white/10 hover:bg-[#7FFF00] text-white rounded-xl py-3 text-[10px] font-black uppercase tracking-widest transition-all">
                                                 Validate Schema on Google
                                             </button>
                                         </div>

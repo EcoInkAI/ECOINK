@@ -50,7 +50,7 @@ export default function NavbarAdmin({ initialItems }: NavbarProps) {
                     <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 font-outfit uppercase tracking-tight">Navigation Menu</h1>
                     <p className="text-gray-500 text-sm md:text-base">Manage your website's header navigation and links.</p>
                 </div>
-                <Button onClick={() => { setCurrent({ isVisible: true, order: items.length }); setIsEditing(true); }} className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                <Button onClick={() => { setCurrent({ isVisible: true, order: items.length }); setIsEditing(true); }} className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                     <Plus size={18} className="mr-2" /> Add Item
                 </Button>
             </div>
@@ -103,7 +103,7 @@ export default function NavbarAdmin({ initialItems }: NavbarProps) {
                                 <button onClick={() => toggleVisibility(item)} className={`p-2 rounded-lg transition-colors ${item.isVisible ? 'text-blue-500 hover:bg-blue-50' : 'text-gray-300 hover:bg-gray-100'}`}>
                                     {item.isVisible ? <Eye size={18} /> : <EyeOff size={18} />}
                                 </button>
-                                <button onClick={() => { setCurrent(item); setIsEditing(true); }} className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors">
+                                <button onClick={() => { setCurrent(item); setIsEditing(true); }} className="p-2 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-lg transition-colors">
                                     <Edit size={18} />
                                 </button>
                                 <button onClick={() => handleDelete(item.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">

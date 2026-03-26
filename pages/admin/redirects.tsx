@@ -91,19 +91,19 @@ export default function RedirectManager() {
                     </div>
                     <Button
                         onClick={() => setIsAdding(true)}
-                        className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl shadow-lg shadow-orange-500/20"
+                        className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl shadow-lg shadow-[#7FFF00]/20"
                     >
                         <Plus size={18} className="mr-2" /> Add Redirect
                     </Button>
                 </div>
 
                 {isAdding && (
-                    <div className="bg-white p-6 rounded-[24px] shadow-xl border border-orange-100 animate-in fade-in slide-in-from-top-4 duration-300">
+                    <div className="bg-white p-6 rounded-[24px] shadow-xl border border-[#7FFF00]/20 animate-in fade-in slide-in-from-top-4 duration-300">
                         <form onSubmit={handleAdd} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                             <div className="md:col-span-1">
                                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block">Source Path</label>
                                 <input
-                                    className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-500/20 outline-none"
+                                    className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#7FFF00]/20 outline-none"
                                     placeholder="/old-page"
                                     value={newRedirect.source}
                                     onChange={e => setNewRedirect({ ...newRedirect, source: e.target.value })}
@@ -113,7 +113,7 @@ export default function RedirectManager() {
                             <div className="md:col-span-1">
                                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block">Target Path/URL</label>
                                 <input
-                                    className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-500/20 outline-none"
+                                    className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#7FFF00]/20 outline-none"
                                     placeholder="/new-page"
                                     value={newRedirect.destination}
                                     onChange={e => setNewRedirect({ ...newRedirect, destination: e.target.value })}
@@ -170,11 +170,11 @@ export default function RedirectManager() {
                                     <tr><td colSpan={6} className="px-6 py-12 text-center text-gray-400 italic">No redirects found.</td></tr>
                                 ) : filteredRedirects.map((r) => (
                                     <tr key={r.id} className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="px-6 py-4 font-mono text-xs text-orange-600">{r.fromPath}</td>
+                                        <td className="px-6 py-4 font-mono text-xs text-[#6ee600]">{r.fromPath}</td>
                                         <td className="px-6 py-4 text-center text-gray-300">→</td>
                                         <td className="px-6 py-4 text-xs text-gray-600 flex items-center gap-2">
                                             {r.toPath}
-                                            <a href={r.toPath} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-orange-500"><ExternalLink size={12} /></a>
+                                            <a href={r.toPath} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-[#7FFF00]"><ExternalLink size={12} /></a>
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded-md text-[10px] font-bold ${r.statusCode === 301 ? 'bg-blue-50 text-blue-600' : 'bg-purple-50 text-purple-600'}`}>

@@ -46,7 +46,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const staticPages = [
         'index', 'contact', 'faq', 'why-magri-cabinets', 'get-a-custom-quote',
         'kitchen-cabinets', 'bathroom-vanities', 'wardrobes',
-        'tv-cabinets', 'laundry-cabinets', 'furniture', 'projects', 'blogs'
+        'tv-cabinets', 'laundry-cabinets', 'furniture', 'projects', 'blogs',
+        'ecoink-ads', 'ecoink-voice'
     ];
 
     const paths = pages

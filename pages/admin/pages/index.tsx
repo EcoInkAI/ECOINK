@@ -29,7 +29,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                     <p className="text-gray-500 text-sm md:text-base">Manage static and dynamic pages of your website.</p>
                 </div>
                 <Link href="/admin/pages/new">
-                    <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                    <Button className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                         <Plus size={18} className="mr-2" /> Create New Page
                     </Button>
                 </Link>
@@ -41,7 +41,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                     <input
                         type="text"
                         placeholder="Search by page title or slug..."
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all font-medium"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -54,7 +54,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                     <div key={page.id} className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-4">
                         <div className="flex items-start justify-between gap-3">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
+                                <div className="w-10 h-10 bg-[#7FFF00]/10 text-[#6ee600] rounded-xl flex items-center justify-center shrink-0">
                                     <FileText size={20} />
                                 </div>
                                 <div>
@@ -62,7 +62,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                                     <p className="text-xs font-mono text-gray-400">/{page.slug}</p>
                                 </div>
                             </div>
-                            <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full shrink-0 ${page.isPublished ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>
+                            <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full shrink-0 ${page.isPublished ? 'bg-green-100 text-green-600' : 'bg-[#7FFF00]/20 text-[#6ee600]'}`}>
                                 {page.isPublished ? 'Live' : 'Draft'}
                             </span>
                         </div>
@@ -73,7 +73,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                                     <button className="p-2 text-gray-400 hover:text-blue-600 rounded-lg"><Eye size={18} /></button>
                                 </Link>
                                 <Link href={`/admin/pages/${page.id}`}>
-                                    <button className="p-2 text-gray-400 hover:text-orange-600 rounded-lg"><Edit size={18} /></button>
+                                    <button className="p-2 text-gray-400 hover:text-[#6ee600] rounded-lg"><Edit size={18} /></button>
                                 </Link>
                                 <button onClick={() => handleDelete(page.id)} className="p-2 text-gray-400 hover:text-red-600 rounded-lg"><Trash2 size={18} /></button>
                             </div>
@@ -106,17 +106,17 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                                 <tr key={page.id} className="hover:bg-gray-50/50 transition-colors group">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
+                                            <div className="w-10 h-10 bg-[#7FFF00]/10 text-[#6ee600] rounded-xl flex items-center justify-center shrink-0">
                                                 <FileText size={20} />
                                             </div>
-                                            <span className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors truncate max-w-[200px]">{page.title}</span>
+                                            <span className="font-bold text-gray-900 group-hover:text-[#6ee600] transition-colors truncate max-w-[200px]">{page.title}</span>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className="text-xs font-mono text-gray-400 bg-gray-100 px-2 py-1 rounded">/{page.slug}</span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full ${page.isPublished ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>
+                                        <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full ${page.isPublished ? 'bg-green-100 text-green-600' : 'bg-[#7FFF00]/20 text-[#6ee600]'}`}>
                                             {page.isPublished ? 'Published' : 'Draft'}
                                         </span>
                                     </td>
@@ -129,7 +129,7 @@ export default function PagesAdmin({ initialPages }: PagesProps) {
                                                 <button className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"><Eye size={18} /></button>
                                             </Link>
                                             <Link href={`/admin/pages/${page.id}`}>
-                                                <button className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all"><Edit size={18} /></button>
+                                                <button className="p-2 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-lg transition-all"><Edit size={18} /></button>
                                             </Link>
                                             <button onClick={() => handleDelete(page.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"><Trash2 size={18} /></button>
                                         </div>

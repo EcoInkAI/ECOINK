@@ -8,7 +8,7 @@ import Layout from "@/components/Layout";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout pageProps={pageProps}>
-      <NextNProgress color="#f97316" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
+      <NextNProgress color="#7FFF00" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
       <Component {...pageProps} />
     </Layout>
   );

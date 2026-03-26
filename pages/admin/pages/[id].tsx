@@ -225,15 +225,15 @@ export default function EditPage({ page: initialPage, availableSections: initial
                             <div
                                 key={template.id}
                                 onClick={() => handleSelectTemplate(template.id)}
-                                className="group bg-white rounded-[40px] p-8 border-2 border-transparent hover:border-orange-500 shadow-xl hover:shadow-orange-500/10 transition-all cursor-pointer flex flex-col items-center text-center relative overflow-hidden h-full"
+                                className="group bg-white rounded-[40px] p-8 border-2 border-transparent hover:border-[#7FFF00] shadow-xl hover:shadow-[#7FFF00]/10 transition-all cursor-pointer flex flex-col items-center text-center relative overflow-hidden h-full"
                             >
-                                <div className="w-20 h-20 bg-gray-50 rounded-3xl flex items-center justify-center text-gray-400 group-hover:bg-orange-50 group-hover:text-orange-500 transition-colors mb-8">
+                                <div className="w-20 h-20 bg-gray-50 rounded-3xl flex items-center justify-center text-gray-400 group-hover:bg-[#7FFF00]/10 group-hover:text-[#7FFF00] transition-colors mb-8">
                                     <template.icon size={40} />
                                 </div>
                                 <h3 className="text-xl font-black text-gray-900 uppercase tracking-widest mb-4 font-outfit">{template.name}</h3>
                                 <p className="text-gray-500 text-sm leading-relaxed mb-8">{template.description}</p>
 
-                                <div className="mt-auto pt-4 border-t border-gray-50 w-full flex items-center justify-center gap-2 text-orange-500 font-bold text-xs uppercase tracking-widest bg-white group-hover:translate-y-[-4px] transition-transform">
+                                <div className="mt-auto pt-4 border-t border-gray-50 w-full flex items-center justify-center gap-2 text-[#7FFF00] font-bold text-xs uppercase tracking-widest bg-white group-hover:translate-y-[-4px] transition-transform">
                                     Start with this <ArrowRight size={14} />
                                 </div>
                             </div>
@@ -284,7 +284,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                             onClick={() => setShowPreview(!showPreview)}
                             className="hidden lg:flex items-center gap-2 h-12 rounded-xl border-gray-300"
                         >
-                            {showPreview ? <Eye size={18} className="text-orange-500" /> : <Eye size={18} className="text-gray-400" />}
+                            {showPreview ? <Eye size={18} className="text-[#7FFF00]" /> : <Eye size={18} className="text-gray-400" />}
                             {showPreview ? 'Hide Preview' : 'Show Preview'}
                         </Button>
 
@@ -332,7 +332,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                         <Button
                             onClick={() => handleSave(true)}
                             disabled={isSaving}
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-95 uppercase tracking-widest text-xs"
+                            className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-8 rounded-xl shadow-lg shadow-[#7FFF00]/20 transition-all active:scale-95 uppercase tracking-widest text-xs"
                         >
                             <Globe size={18} className="mr-2" /> {page.isPublished ? 'Update & Live' : 'Publish Page'}
                         </Button>
@@ -340,21 +340,20 @@ export default function EditPage({ page: initialPage, availableSections: initial
                 </div>
 
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* LEFT: Editor Area */}
-                    <div className={`space-y-6 ${showPreview ? 'lg:col-span-6 xl:col-span-4' : 'lg:col-span-8 lg:col-start-3'}`}>
+                    <div className={`space-y-6 ${showPreview ? 'lg:col-span-5 xl:col-span-4' : 'lg:col-span-8 lg:col-start-3'}`}>
 
                         {/* Page Settings */}
                         <div className="bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-gray-100 space-y-6">
                             <h2 className="text-sm font-black text-gray-900 uppercase tracking-widest border-b pb-4 font-outfit flex items-center gap-2">
-                                <Settings size={16} className="text-orange-500" /> Settings
+                                <Settings size={16} className="text-[#7FFF00]" /> Settings
                             </h2>
                             <div className="space-y-4">
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Page Title</label>
                                     <input
-                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800 text-sm"
+                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800 text-sm"
                                         value={page.title}
                                         onChange={e => setPage({ ...page, title: e.target.value })}
                                         placeholder="e.g. Our Services"
@@ -364,7 +363,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Status</label>
                                     <select
-                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800 text-sm"
+                                        className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800 text-sm"
                                         value={page.isPublished ? 'true' : 'false'}
                                         onChange={e => setPage({ ...page, isPublished: e.target.value === 'true' })}
                                     >
@@ -374,7 +373,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                 </div>
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">URL Slug</label>
-                                    <div className="flex items-center gap-2 bg-gray-50/50 border-2 border-gray-50 p-3 rounded-xl focus-within:bg-white focus-within:border-orange-500 transition-all">
+                                    <div className="flex items-center gap-2 bg-gray-50/50 border-2 border-gray-50 p-3 rounded-xl focus-within:bg-white focus-within:border-[#7FFF00] transition-all">
                                         <span className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">/</span>
                                         <input
                                             className="flex-1 bg-transparent border-none outline-none font-bold text-gray-800 placeholder:text-gray-300 text-sm"
@@ -391,10 +390,10 @@ export default function EditPage({ page: initialPage, availableSections: initial
                         {/* Navigation Settings */}
                         <div className="bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-gray-100 space-y-6">
                             <h2 className="text-sm font-black text-gray-900 uppercase tracking-widest border-b pb-4 font-outfit flex items-center gap-2">
-                                <Globe size={16} className="text-orange-500" /> Navigation
+                                <Globe size={16} className="text-[#7FFF00]" /> Navigation
                             </h2>
                             <div className="space-y-4">
-                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100 transition-all hover:bg-white hover:border-orange-200 shadow-sm hover:shadow-orange-500/5">
+                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100 transition-all hover:bg-white hover:border-orange-200 shadow-sm hover:shadow-[#7FFF00]/5">
                                     <div>
                                         <p className="text-xs font-bold text-gray-900">Show in Navbar</p>
                                         <p className="text-[10px] text-gray-500">Will appear in main navigation</p>
@@ -403,7 +402,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                         type="checkbox"
                                         checked={page.showInNavbar}
                                         onChange={e => setPage({ ...page, showInNavbar: e.target.checked })}
-                                        className="w-5 h-5 accent-orange-500 cursor-pointer"
+                                        className="w-5 h-5 accent-[#7FFF00] cursor-pointer"
                                     />
                                 </div>
                                 {page.showInNavbar && (
@@ -411,7 +410,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                         <div className="animate-in slide-in-from-top-2 duration-300">
                                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Navbar Label</label>
                                             <input
-                                                className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800 text-sm"
+                                                className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800 text-sm"
                                                 value={page.navbarLabel || ''}
                                                 onChange={e => setPage({ ...page, navbarLabel: e.target.value })}
                                                 placeholder={page.title || "Label"}
@@ -421,7 +420,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 pl-1">Display Order</label>
                                             <input
                                                 type="number"
-                                                className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all font-bold text-gray-800 text-sm"
+                                                className="w-full border-2 border-gray-50 bg-gray-50/50 p-3 rounded-xl outline-none focus:border-[#7FFF00] focus:bg-white transition-all font-bold text-gray-800 text-sm"
                                                 value={page.navbarOrder || 0}
                                                 onChange={e => setPage({ ...page, navbarOrder: parseInt(e.target.value) || 0 })}
                                             />
@@ -436,15 +435,15 @@ export default function EditPage({ page: initialPage, availableSections: initial
                         <div className="bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-gray-100 min-h-[500px] flex flex-col">
                             <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-50">
                                 <h2 className="text-sm font-black text-gray-900 uppercase tracking-widest font-outfit flex items-center gap-2">
-                                    <Layers size={16} className="text-orange-500" /> Page Content (Sections)
+                                    <Layers size={16} className="text-[#7FFF00]" /> Page Content (Sections)
                                 </h2>
                             </div>
 
                             <div className="flex-1 space-y-3">
                                 {pageSections.map((ps, index) => (
-                                    <div key={index} className="group relative bg-gray-50 border border-gray-100 p-4 rounded-2xl flex items-center justify-between hover:border-orange-200 hover:bg-white hover:shadow-lg hover:shadow-orange-500/5 transition-all">
+                                    <div key={index} className="group relative bg-gray-50 border border-gray-100 p-4 rounded-2xl flex items-center justify-between hover:border-orange-200 hover:bg-white hover:shadow-lg hover:shadow-[#7FFF00]/5 transition-all">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-orange-500 shrink-0 border border-gray-100">
+                                            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#7FFF00] shrink-0 border border-gray-100">
                                                 {ps.section?.type === 'HERO' ? <Layout size={20} /> :
                                                     ps.section?.type === 'GALLERY' ? <ImageIcon size={20} /> :
                                                         ps.section?.type === 'FAQ' ? <HelpCircle size={20} /> :
@@ -460,7 +459,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                         <div className="flex items-center gap-2">
                                             <button
                                                 onClick={() => editSection(index)}
-                                                className="px-3 py-1.5 bg-white border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 hover:text-orange-500 hover:border-orange-500 transition-all shadow-sm flex items-center gap-1.5"
+                                                className="px-3 py-1.5 bg-white border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 hover:text-[#7FFF00] hover:border-[#7FFF00] transition-all shadow-sm flex items-center gap-1.5"
                                             >
                                                 Edit Content <ArrowRight size={12} />
                                             </button>
@@ -482,7 +481,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                         <button
                                             key={section.id}
                                             onClick={() => addExistingSection(section)}
-                                            className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-[10px] font-bold text-gray-600 hover:border-orange-500 hover:text-orange-500 transition-all"
+                                            className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-[10px] font-bold text-gray-600 hover:border-[#7FFF00] hover:text-[#7FFF00] transition-all"
                                         >
                                             + {section.internalName}
                                         </button>
@@ -490,66 +489,66 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        {showPreview && (
-                            <div className={`
-                            fixed bottom-0 right-0 top-[100px] hidden lg:block overflow-y-auto bg-gray-100 border-l border-gray-200 shadow-inner z-10 transition-all duration-300
-                            ${isPreviewExpanded ? 'left-0 w-full pl-0' : 'lg:col-span-6 xl:col-span-8 p-6 lg:p-8'}
+                    {/* RIGHT: Live Preview Area (Only if visible) */}
+                    {showPreview && (
+                        <div className={`
+                            ${isPreviewExpanded ? 'fixed inset-0 z-[100] bg-white' : 'lg:col-span-7 xl:col-span-8 sticky top-[100px] h-[calc(100vh-140px)]'}
+                            transition-all duration-300
                         `}>
-                                {/* ... Content of preview ... */}
-                                <div className={`mx-auto transition-all duration-300 ${isPreviewExpanded ? 'max-w-full px-4' : 'max-w-[1400px]'}`}>
-                                    <div className="flex items-center justify-between mb-6 sticky top-0 z-20 bg-gray-100/90 backdrop-blur py-4">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                            <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Live Client Preview</span>
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <button
-                                                onClick={() => setIsPreviewExpanded(!isPreviewExpanded)}
-                                                className="px-3 py-1 bg-white hover:bg-orange-50 hover:text-orange-500 rounded-full shadow-sm text-[10px] font-bold text-gray-500 border border-gray-200 transition-all flex items-center gap-2"
-                                            >
-                                                {isPreviewExpanded ? <Minimize size={12} /> : <Maximize size={12} />}
-                                                {isPreviewExpanded ? 'Desktop View' : 'Full Preview'}
-                                            </button>
-                                        </div>
+                            <div className="bg-gray-100 rounded-[32px] h-full flex flex-col overflow-hidden shadow-inner border border-gray-200">
+                                <div className="flex items-center justify-between p-4 bg-gray-100/90 backdrop-blur border-b border-gray-200">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                        <span className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">Live Client Preview</span>
                                     </div>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => setIsPreviewExpanded(!isPreviewExpanded)}
+                                            className="px-3 py-1.5 bg-white hover:bg-[#7FFF00]/10 hover:text-[#7FFF00] rounded-xl shadow-sm text-[10px] font-bold text-gray-500 border border-gray-200 transition-all flex items-center gap-2"
+                                        >
+                                            {isPreviewExpanded ? <Minimize size={14} /> : <Maximize size={14} />}
+                                            {isPreviewExpanded ? 'Exit Fullscreen' : 'Full Preview'}
+                                        </button>
+                                    </div>
+                                </div>
 
+                                <div className="flex-1 overflow-hidden p-4 md:p-6 lg:p-8">
                                     <div className={`
-                                    bg-white rounded-t-[32px] shadow-2xl border border-gray-200 overflow-hidden relative transform origin-top hover:scale-[1] transition-all duration-500
-                                    ${isPreviewExpanded ? 'min-h-screen rounded-none border-0' : 'min-h-[800px] scale-[0.98]'}
-                                `}>
-                                        {!isPreviewExpanded && (
-                                            <div className="h-8 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-2">
-                                                <div className="flex gap-1.5">
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-                                                </div>
-                                                <div className="flex-1 flex justify-center">
-                                                    <div className="bg-white border border-gray-200 rounded-full h-5 w-1/2 flex items-center justify-center">
-                                                        <span className="text-[8px] text-gray-400 font-medium">magricabinets.com.au/{page.slug || '...'}</span>
-                                                    </div>
+                                        bg-white shadow-2xl border border-gray-200 overflow-hidden h-full relative flex flex-col
+                                        ${isPreviewExpanded ? 'rounded-none' : 'rounded-2xl'}
+                                    `}>
+                                        <div className="h-8 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-2 shrink-0">
+                                            <div className="flex gap-1.5">
+                                                <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                                                <div className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+                                                <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+                                            </div>
+                                            <div className="flex-1 flex justify-center">
+                                                <div className="bg-white border border-gray-200 rounded-full h-5 w-1/2 flex items-center justify-center">
+                                                    <span className="text-[8px] text-gray-400 font-medium tracking-tight">ecoisolation.com.au/{page.slug || '...'}</span>
                                                 </div>
                                             </div>
-                                        )}
+                                        </div>
 
-                                        <div className="h-full overflow-y-auto">
+                                        <div className="flex-1 overflow-y-auto">
                                             <PageRenderer content={previewContent} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
+                </div>
 
-                    {/* SEO Tools - Full Width */}
-                    <div className="bg-white rounded-[32px] overflow-hidden shadow-md border border-gray-100 mt-8">
-                        <SeoMetaBox
-                            data={page}
-                            onChange={(newData) => setPage({ ...page, ...newData })}
-                            content={pageSections.map(ps => JSON.stringify(ps.section?.content || {})).join(' ')}
-                        />
-                    </div>
+                {/* SEO Tools - Full Width (Always at bottom) */}
+                <div className="bg-white rounded-[32px] overflow-hidden shadow-md border border-gray-100 mt-8">
+                    <SeoMetaBox
+                        data={page}
+                        onChange={(newData) => setPage({ ...page, ...newData })}
+                        content={pageSections.map(ps => JSON.stringify(ps.section?.content || {})).join(' ')}
+                    />
                 </div>
 
                 {/* Section Editor Modal */}
@@ -559,7 +558,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                             <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/80">
                                 <div>
                                     <h2 className="text-xl font-black text-gray-900 font-outfit uppercase tracking-tight">Edit Section Content</h2>
-                                    <p className="text-xs text-orange-500 font-black uppercase tracking-widest">{currentSection.type} Template</p>
+                                    <p className="text-xs text-[#7FFF00] font-black uppercase tracking-widest">{currentSection.type} Template</p>
                                 </div>
                                 <button onClick={() => setIsSectionModalOpen(false)} className="p-3 hover:bg-white rounded-2xl transition-all shadow-sm">
                                     <X size={20} className="text-gray-400" />
@@ -572,7 +571,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Section Heading</label>
                                         <input
-                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-orange-500 font-bold text-gray-800 transition-all"
+                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-[#7FFF00] font-bold text-gray-800 transition-all"
                                             value={currentSection.content.heading}
                                             onChange={e => setCurrentSection({ ...currentSection, content: { ...currentSection.content, heading: e.target.value } })}
                                         />
@@ -583,7 +582,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Subheading / Description</label>
                                         <textarea
-                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-orange-500 font-medium text-gray-600 h-24 resize-none transition-all"
+                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-[#7FFF00] font-medium text-gray-600 h-24 resize-none transition-all"
                                             value={currentSection.content.subheading || ''}
                                             onChange={e => setCurrentSection({ ...currentSection, content: { ...currentSection.content, subheading: e.target.value } })}
                                         />
@@ -594,7 +593,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Body Content (HTML)</label>
                                         <textarea
-                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-orange-500 font-mono text-xs h-40 transition-all"
+                                            className="w-full border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-[#7FFF00] font-mono text-xs h-40 transition-all"
                                             value={currentSection.content.html}
                                             onChange={e => setCurrentSection({ ...currentSection, content: { ...currentSection.content, html: e.target.value } })}
                                         />
@@ -636,7 +635,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-center">
                                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">FAQ / Testimonial Items</label>
-                                            <Button size="sm" variant="ghost" className="text-orange-500 text-[10px]" onClick={() => setCurrentSection({ ...currentSection, content: { ...currentSection.content, items: [...(currentSection.content.items || []), { question: '', answer: '', quote: '', author: '' }] } })}>
+                                            <Button size="sm" variant="ghost" className="text-[#7FFF00] text-[10px]" onClick={() => setCurrentSection({ ...currentSection, content: { ...currentSection.content, items: [...(currentSection.content.items || []), { question: '', answer: '', quote: '', author: '' }] } })}>
                                                 + Add Item
                                             </Button>
                                         </div>
@@ -685,7 +684,7 @@ export default function EditPage({ page: initialPage, availableSections: initial
 
                             <div className="p-8 border-t border-gray-100 flex justify-end gap-3 bg-gray-50/50">
                                 <Button variant="ghost" className="font-bold text-gray-400" onClick={() => setIsSectionModalOpen(false)}>Discard</Button>
-                                <Button onClick={handleSaveSectionEdits} className="bg-gray-900 hover:bg-orange-500 text-white font-bold h-12 px-8 rounded-xl shadow-xl transition-all">
+                                <Button onClick={handleSaveSectionEdits} className="bg-gray-900 hover:bg-[#7FFF00] text-white font-bold h-12 px-8 rounded-xl shadow-xl transition-all">
                                     Done Editing
                                 </Button>
                             </div>

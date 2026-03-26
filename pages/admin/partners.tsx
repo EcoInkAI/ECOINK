@@ -42,7 +42,7 @@ export default function PartnersAdmin({ initialPartners }: PartnersProps) {
                     <h1 className="text-3xl font-bold text-gray-900">Partners & Suppliers</h1>
                     <p className="text-gray-500">Manage brand logos and website links for your partners.</p>
                 </div>
-                <Button onClick={() => { setCurrent({}); setIsEditing(true); }} className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 rounded-xl">
+                <Button onClick={() => { setCurrent({}); setIsEditing(true); }} className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 rounded-xl">
                     <Plus size={18} className="mr-2" /> Add Partner
                 </Button>
             </div>
@@ -54,7 +54,7 @@ export default function PartnersAdmin({ initialPartners }: PartnersProps) {
                         <form onSubmit={handleSave} className="space-y-5">
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Partner Name</label>
-                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium" placeholder="e.g. Blum Australia" value={current.name || ''} onChange={e => setCurrent({ ...current, name: e.target.value })} required />
+                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all font-medium" placeholder="e.g. Blum Australia" value={current.name || ''} onChange={e => setCurrent({ ...current, name: e.target.value })} required />
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Partner Logo</label>
@@ -69,11 +69,11 @@ export default function PartnersAdmin({ initialPartners }: PartnersProps) {
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase">Website Link (Optional)</label>
-                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" placeholder="https://..." value={current.websiteUrl || ''} onChange={e => setCurrent({ ...current, websiteUrl: e.target.value })} />
+                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all" placeholder="https://..." value={current.websiteUrl || ''} onChange={e => setCurrent({ ...current, websiteUrl: e.target.value })} />
                             </div>
                             <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                                 <Button type="button" variant="ghost" className="rounded-xl px-6" onClick={() => setIsEditing(false)}>Cancel</Button>
-                                <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-8 shadow-lg shadow-orange-500/20">Save Partner</Button>
+                                <Button type="submit" className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl px-8 shadow-lg shadow-[#7FFF00]/20">Save Partner</Button>
                             </div>
                         </form>
                     </div>
@@ -84,7 +84,7 @@ export default function PartnersAdmin({ initialPartners }: PartnersProps) {
                 {partners.map((item: any) => (
                     <div key={item.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center group relative hover:shadow-lg transition-all">
                         <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onClick={() => { setCurrent(item); setIsEditing(true); }} className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg"><Edit size={14} /></button>
+                            <button onClick={() => { setCurrent(item); setIsEditing(true); }} className="p-2 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-lg"><Edit size={14} /></button>
                             <button onClick={() => handleDelete(item.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"><Trash2 size={14} /></button>
                         </div>
 

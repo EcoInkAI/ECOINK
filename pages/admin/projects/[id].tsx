@@ -175,7 +175,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         <Button
                             type="submit"
                             disabled={isSaving}
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
+                            className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-black h-11 px-6 rounded-1xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all text-[10px] uppercase tracking-widest"
                         >
                             {isSaving ? 'Saving...' : <><Save size={16} className="mr-2" /> Save Project</>}
                         </Button>
@@ -232,7 +232,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Before & After Section */}
                         <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-gray-100">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-6">
-                                <Activity size={14} className="text-orange-500" /> Transformation (Before & After)
+                                <Activity size={14} className="text-[#7FFF00]" /> Transformation (Before & After)
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
@@ -263,7 +263,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Testimonials */}
                         <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-gray-100">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-6">
-                                <User size={14} className="text-orange-500" /> Client Testimonial
+                                <User size={14} className="text-[#7FFF00]" /> Client Testimonial
                             </h3>
                             <div className="space-y-4">
                                 <div>
@@ -291,7 +291,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-gray-100">
                             <div className="flex items-center justify-between mb-6">
                                 <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
-                                    <Search size={14} className="text-orange-500" /> Project FAQs
+                                    <Search size={14} className="text-[#7FFF00]" /> Project FAQs
                                 </h3>
                                 <Button
                                     type="button"
@@ -351,13 +351,13 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Tags Editor */}
                         <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-gray-100">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-6">
-                                <Tag size={14} className="text-orange-500" /> Project Tags
+                                <Tag size={14} className="text-[#7FFF00]" /> Project Tags
                             </h3>
                             <p className="text-xs text-gray-400 mb-4">Tags displayed as pills on the project detail page (e.g., "Custom Design", "Premium Materials")</p>
 
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {(project.tags || []).map((tag: string, idx: number) => (
-                                    <div key={idx} className="flex items-center gap-1 px-3 py-1.5 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">
+                                    <div key={idx} className="flex items-center gap-1 px-3 py-1.5 bg-[#7FFF00]/20 text-orange-700 rounded-full text-sm font-medium">
                                         <span>{tag}</span>
                                         <button type="button" onClick={() => removeTag(idx)} className="ml-1 hover:text-red-600">
                                             <Trash2 size={12} />
@@ -375,7 +375,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                                     onChange={e => setNewTag(e.target.value)}
                                     onKeyPress={e => e.key === 'Enter' && (e.preventDefault(), addTag())}
                                 />
-                                <Button type="button" onClick={addTag} className="bg-orange-500 hover:bg-orange-600 text-white px-4">
+                                <Button type="button" onClick={addTag} className="bg-[#7FFF00] hover:bg-[#6ee600] text-white px-4">
                                     <Plus size={16} />
                                 </Button>
                             </div>
@@ -384,7 +384,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Gallery Section */}
                         <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-gray-100">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-6">
-                                <LayoutGrid size={14} className="text-orange-500" /> Project Gallery
+                                <LayoutGrid size={14} className="text-[#7FFF00]" /> Project Gallery
                             </h3>
 
                             <div className="mb-8">
@@ -407,7 +407,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                                             <button
                                                 type="button"
                                                 onClick={() => setProject({ ...project, heroImage: img })}
-                                                className="p-2 bg-orange-500 text-white rounded-xl shadow-lg transform scale-75 group-hover:scale-100 transition-transform text-[10px] font-bold"
+                                                className="p-2 bg-[#7FFF00] text-white rounded-xl shadow-lg transform scale-75 group-hover:scale-100 transition-transform text-[10px] font-bold"
                                                 title="Set as Hero"
                                             >
                                                 Hero
@@ -434,7 +434,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Hero Image */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <ImageIcon size={14} className="text-orange-500" /> Hero Image
+                                <ImageIcon size={14} className="text-[#7FFF00]" /> Hero Image
                             </h3>
                             <ImageUploader
                                 currentImage={project.heroImage}
@@ -450,7 +450,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Thumbnail/Card Image */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <LayoutGrid size={14} className="text-orange-500" /> Card Thumbnail Image
+                                <LayoutGrid size={14} className="text-[#7FFF00]" /> Card Thumbnail Image
                             </h3>
                             <ImageUploader
                                 currentImage={project.thumbnailImage}
@@ -466,7 +466,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Project Details Box */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Globe size={14} className="text-orange-500" /> Project Details
+                                <Globe size={14} className="text-[#7FFF00]" /> Project Details
                             </h3>
 
                             <div>
@@ -516,10 +516,10 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
                         {/* Homepage/Thumbnail Info */}
                         <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 space-y-4">
                             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                                <Type size={14} className="text-orange-500" /> Thumbnail Summary
+                                <Type size={14} className="text-[#7FFF00]" /> Thumbnail Summary
                             </h3>
                             <textarea
-                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-orange-200"
+                                className="w-full bg-gray-50 border-0 rounded-xl p-3 text-xs text-gray-600 h-32 resize-none outline-none focus:ring-1 focus:ring-[#7FFF00]/20"
                                 placeholder="Short summary for project cards..."
                                 value={project.description}
                                 onChange={e => setProject({ ...project, description: e.target.value })}
@@ -528,7 +528,7 @@ export default function EditProject({ project: initialProject }: ProjectFormProp
 
                         {/* Project Stats */}
                         <div className="bg-gray-900 p-6 rounded-[24px] shadow-sm border border-gray-800 space-y-4 text-white">
-                            <h3 className="text-xs font-black text-orange-500 uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <h3 className="text-xs font-black text-[#7FFF00] uppercase tracking-widest flex items-center gap-2 mb-4">
                                 <Activity size={14} /> Project Stats
                             </h3>
                             <div className="grid grid-cols-2 gap-4">

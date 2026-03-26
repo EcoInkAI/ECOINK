@@ -49,7 +49,7 @@ export default function MessagesAdmin({ initialMessages }: MessagesProps) {
                             <div
                                 key={msg.id}
                                 onClick={() => { setSelected(msg); markAsRead(msg); }}
-                                className={`p-4 cursor-pointer hover:bg-orange-50/50 transition-colors relative ${selected?.id === msg.id ? 'bg-orange-50 border-l-4 border-orange-500' : ''}`}
+                                className={`p-4 cursor-pointer hover:bg-[#7FFF00]/10/50 transition-colors relative ${selected?.id === msg.id ? 'bg-[#7FFF00]/10 border-l-4 border-[#7FFF00]' : ''}`}
                             >
                                 <div className="flex justify-between items-start mb-1">
                                     <span className={`text-sm font-bold ${msg.status === 'UNREAD' ? 'text-gray-900' : 'text-gray-500'}`}>{msg.name}</span>
@@ -76,7 +76,7 @@ export default function MessagesAdmin({ initialMessages }: MessagesProps) {
                             <div className="flex justify-between items-start mb-8 pb-8 border-b border-gray-50">
                                 <div>
                                     <div className="flex items-center gap-3 mb-2">
-                                        <div className="w-10 h-10 bg-orange-100 text-orange-700 rounded-full flex items-center justify-center font-bold text-lg">
+                                        <div className="w-10 h-10 bg-[#7FFF00]/20 text-orange-700 rounded-full flex items-center justify-center font-bold text-lg">
                                             {selected.name.charAt(0)}
                                         </div>
                                         <div>
@@ -106,14 +106,14 @@ export default function MessagesAdmin({ initialMessages }: MessagesProps) {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-white border p-4 rounded-xl flex items-center gap-3">
-                                        <Phone size={18} className="text-orange-600" />
+                                        <Phone size={18} className="text-[#6ee600]" />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase">Phone</p>
                                             <p className="text-sm font-medium">{selected.phone || 'N/A'}</p>
                                         </div>
                                     </div>
                                     <div className="bg-white border p-4 rounded-xl flex items-center gap-3">
-                                        <Calendar size={18} className="text-orange-600" />
+                                        <Calendar size={18} className="text-[#6ee600]" />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase">Received</p>
                                             <p className="text-sm font-medium"><FormattedDate date={selected.createdAt} showTime /></p>
@@ -126,7 +126,7 @@ export default function MessagesAdmin({ initialMessages }: MessagesProps) {
                                 <Button variant="outline" className="rounded-xl px-6" onClick={() => window.open(`mailto:${selected.email}`)}>
                                     <Mail size={16} className="mr-2" /> Reply via Email
                                 </Button>
-                                <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-6">
+                                <Button className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl px-6">
                                     <CheckCircle size={16} className="mr-2" /> Mark as Resolved
                                 </Button>
                             </div>

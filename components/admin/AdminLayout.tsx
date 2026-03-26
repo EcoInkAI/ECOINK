@@ -65,18 +65,18 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
             {/* Mobile Header */}
-            <div className="lg:hidden bg-[#1e293b] text-white p-4 flex items-center justify-between sticky top-0 z-50">
+            <div className="lg:hidden bg-[#0a0a0a] text-white p-4 flex items-center justify-between sticky top-0 z-50">
                 <div className="flex items-center gap-3">
-                    <div className="relative w-8 h-8 flex items-center justify-center bg-white rounded-lg p-1">
+                    <div className="relative w-8 h-8 flex items-center justify-center bg-transparent rounded-lg p-0">
                         <Image
-                            src="/Magri-Cabinets-removebg-preview.png"
-                            alt="Magri Logo"
+                            src="/Logo/logo.png"
+                            alt="Ecoink Logo"
                             width={24}
                             height={24}
                             className="object-contain"
                         />
                     </div>
-                    <h1 className="font-bold text-base text-white">Magri <span className="text-orange-500">Admin</span></h1>
+                    <h1 className="font-bold text-base text-white">Ecoink <span className="text-[#7FFF00]">Admin</span></h1>
                 </div>
                 <button
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -96,23 +96,23 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Sidebar */}
             <aside className={`
-                fixed lg:sticky top-0 left-0 h-full lg:h-screen w-64 bg-[#1e293b] text-white z-50 
-                flex flex-col transition-transform duration-300 lg:translate-x-0
+                fixed lg:sticky top-0 left-0 h-full lg:h-screen w-64 bg-[#0a0a0a] text-white z-50 
+                flex flex-col border-r border-white/5 transition-transform duration-300 lg:translate-x-0
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-                <div className="p-6 border-b border-gray-700 hidden lg:flex items-center gap-3">
-                    <div className="relative w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-lg shadow-white/10 p-1">
+                <div className="p-6 border-b border-white/5 hidden lg:flex items-center gap-3">
+                    <div className="relative w-10 h-10 flex items-center justify-center bg-transparent rounded-xl p-0">
                         <Image
-                            src="/Magri-Cabinets-removebg-preview.png"
-                            alt="Magri Logo"
+                            src="/Logo/logo.png"
+                            alt="Ecoink Logo"
                             width={32}
                             height={32}
                             className="object-contain"
                         />
                     </div>
                     <div>
-                        <h1 className="font-bold text-lg text-white leading-tight">Magri <span className="text-orange-500">Admin</span></h1>
-                        <p className="text-[10px] uppercase font-black tracking-widest text-gray-500">Cabinet Makers</p>
+                        <h1 className="font-bold text-xl text-white leading-tight">Ecoink <span className="text-[#7FFF00]">Admin</span></h1>
+                        <p className="text-[10px] uppercase font-black tracking-widest text-[#7FFF00]/50">Media Agency</p>
                     </div>
                 </div>
 
@@ -123,9 +123,9 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                             return (
                                 <li key={item.href}>
                                     <Link href={item.href}>
-                                        <div className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive
-                                            ? 'bg-orange-500/10 text-orange-500'
-                                            : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                                        <div className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${isActive
+                                            ? 'bg-[#7FFF00]/10 text-[#7FFF00] ring-1 ring-[#7FFF00]/20 shadow-[0_0_15px_rgba(127,255,0,0.1)]'
+                                            : 'text-gray-400 hover:bg-white/5 hover:text-white'
                                             }`}>
                                             <item.icon size={18} />
                                             {item.label}
@@ -137,16 +137,17 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                     </ul>
                 </nav>
 
-                <div className="p-4 border-t border-gray-700 bg-[#1e293b]">
+                <div className="p-4 border-t border-white/5 bg-[#0a1010]">
                     <div className="flex items-center gap-3 mb-4 px-2">
-                        <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-[#7FFF00] flex items-center justify-center text-black font-bold shrink-0">
                             A
                         </div>
                         <div className="overflow-hidden">
-                            <p className="text-sm font-medium text-white truncate">admin@magri.com</p>
-                            <p className="text-xs text-gray-400">Administrator</p>
+                            <p className="text-sm font-medium text-white truncate">admin@ecoink.com.au</p>
+                            <p className="text-xs text-gray-500">Administrator</p>
                         </div>
                     </div>
+
                     <Button
                         variant="destructive"
                         className="w-full flex items-center gap-2 justify-center rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border-0"

@@ -49,7 +49,7 @@ const PageRenderer: React.FC<{ content: SectionProps[] }> = ({ content }) => {
                                     </p>
                                     {(section.data.ctaText || section.data.ctaLabel) && (
                                         <Link href={section.data.ctaLink || '#'}>
-                                            <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-14 px-10 rounded-2xl shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 text-lg uppercase tracking-widest">
+                                            <Button className="bg-[#7FFF00] hover:bg-[#6ee600] text-black font-bold h-14 px-10 rounded-2xl shadow-2xl shadow-[#7FFF00]/30 transition-all hover:scale-105 active:scale-95 text-lg uppercase tracking-widest">
                                                 {section.data.ctaText || section.data.ctaLabel}
                                             </Button>
                                         </Link>
@@ -60,7 +60,7 @@ const PageRenderer: React.FC<{ content: SectionProps[] }> = ({ content }) => {
 
                     case 'text':
                         return (
-                            <div key={index} className="max-w-4xl mx-auto px-4 py-16 prose prose-lg prose-orange">
+                            <div key={index} className="max-w-4xl mx-auto px-4 py-16 prose prose-lg prose-lime">
                                 <div dangerouslySetInnerHTML={{ __html: section.data.html }} />
                             </div>
                         );
@@ -91,7 +91,7 @@ const PageRenderer: React.FC<{ content: SectionProps[] }> = ({ content }) => {
                                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                                         {/* Left Content */}
-                                        <div className="lg:col-span-7 prose prose-lg prose-orange">
+                                        <div className="lg:col-span-7 prose prose-lg prose-lime">
                                             {section.data.heading && <h2 className="text-3xl font-bold mb-6">{section.data.heading}</h2>}
                                             <div dangerouslySetInnerHTML={{ __html: section.data.html }} />
                                         </div>
@@ -105,7 +105,7 @@ const PageRenderer: React.FC<{ content: SectionProps[] }> = ({ content }) => {
                                                     <div className="space-y-6">
                                                         {(section.data.details || []).map((detail: any, dIdx: number) => (
                                                             <div key={dIdx} className="flex items-start gap-4">
-                                                                <div className="p-3 bg-white rounded-xl shadow-sm text-orange-500">
+                                                                <div className="p-3 bg-white rounded-xl shadow-sm text-[#7FFF00]">
                                                                     {detail.icon === 'tag' && <Tag size={20} />}
                                                                     {detail.icon === 'calendar' && <Calendar size={20} />}
                                                                     {detail.icon === 'map-pin' && <MapPin size={20} />}

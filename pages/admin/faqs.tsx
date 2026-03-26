@@ -41,7 +41,7 @@ export default function FAQsAdmin({ initialFAQs }: FAQsProps) {
                 </div>
                 <Button
                     onClick={() => { setCurrent({ order: faqs.length, isVisible: true }); setIsEditing(true); }}
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all w-full sm:w-auto"
+                    className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all w-full sm:w-auto"
                 >
                     <Plus size={18} className="mr-2" /> Add FAQ
                 </Button>
@@ -54,21 +54,21 @@ export default function FAQsAdmin({ initialFAQs }: FAQsProps) {
                         <form onSubmit={handleSave} className="space-y-5">
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wider">Question</label>
-                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium" placeholder="What is the process?" value={current.question || ''} onChange={e => setCurrent({ ...current, question: e.target.value })} required />
+                                <input className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all font-medium" placeholder="What is the process?" value={current.question || ''} onChange={e => setCurrent({ ...current, question: e.target.value })} required />
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wider">Answer</label>
-                                <textarea className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 transition-all h-40 resize-none" placeholder="The process involves..." value={current.answer || ''} onChange={e => setCurrent({ ...current, answer: e.target.value })} required />
+                                <textarea className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all h-40 resize-none" placeholder="The process involves..." value={current.answer || ''} onChange={e => setCurrent({ ...current, answer: e.target.value })} required />
                             </div>
                             <div className="flex gap-4">
                                 <div className="flex-1">
                                     <label className="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wider">Order</label>
-                                    <input type="number" className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" value={current.order || 0} onChange={e => setCurrent({ ...current, order: parseInt(e.target.value) })} />
+                                    <input type="number" className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all" value={current.order || 0} onChange={e => setCurrent({ ...current, order: parseInt(e.target.value) })} />
                                 </div>
                             </div>
                             <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                                 <Button type="button" variant="ghost" className="rounded-xl px-6" onClick={() => setIsEditing(false)}>Cancel</Button>
-                                <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-8 shadow-lg shadow-orange-500/20">Save FAQ</Button>
+                                <Button type="submit" className="bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl px-8 shadow-lg shadow-[#7FFF00]/20">Save FAQ</Button>
                             </div>
                         </form>
                     </div>
@@ -81,17 +81,17 @@ export default function FAQsAdmin({ initialFAQs }: FAQsProps) {
                         <div className="flex justify-between items-start gap-4">
                             <div className="flex-1">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white text-sm font-black shrink-0 shadow-lg shadow-orange-500/20">
+                                    <div className="w-10 h-10 rounded-xl bg-[#7FFF00] flex items-center justify-center text-white text-sm font-black shrink-0 shadow-lg shadow-[#7FFF00]/20">
                                         Q{faq.order + 1}
                                     </div>
-                                    <h3 className="text-lg font-black text-gray-900 leading-tight font-outfit uppercase tracking-tight group-hover:text-orange-600 transition-colors">{faq.question}</h3>
+                                    <h3 className="text-lg font-black text-gray-900 leading-tight font-outfit uppercase tracking-tight group-hover:text-[#6ee600] transition-colors">{faq.question}</h3>
                                 </div>
                                 <div className="pl-[52px]">
                                     <p className="text-gray-500 text-sm leading-relaxed">{faq.answer}</p>
                                 </div>
                             </div>
                             <div className="flex gap-1 lg:opacity-0 lg:group-hover:opacity-100 transition-all shrink-0">
-                                <button onClick={() => { setCurrent(faq); setIsEditing(true); }} className="p-2.5 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"><Edit size={18} /></button>
+                                <button onClick={() => { setCurrent(faq); setIsEditing(true); }} className="p-2.5 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-xl transition-all"><Edit size={18} /></button>
                                 <button onClick={() => handleDelete(faq.id)} className="p-2.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
                             </div>
                         </div>

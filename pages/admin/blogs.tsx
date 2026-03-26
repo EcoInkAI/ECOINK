@@ -26,7 +26,7 @@ export default function BlogsAdmin({ initialPosts }: BlogsProps) {
 
     const getScoreColor = (score: number) => {
         if (score >= 80) return 'text-green-600 bg-green-100';
-        if (score >= 50) return 'text-orange-600 bg-orange-100';
+        if (score >= 50) return 'text-[#6ee600] bg-[#7FFF00]/20';
         return 'text-red-600 bg-red-100';
     };
 
@@ -44,7 +44,7 @@ export default function BlogsAdmin({ initialPosts }: BlogsProps) {
                         </Button>
                     </Link>
                     <Link href="/admin/blogs/new" className="w-full sm:w-auto">
-                        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all">
+                        <Button className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all">
                             <Plus size={18} className="mr-2" /> Create Blog Post
                         </Button>
                     </Link>
@@ -57,7 +57,7 @@ export default function BlogsAdmin({ initialPosts }: BlogsProps) {
                     <input
                         type="text"
                         placeholder="Search blogs..."
-                        className="w-full pl-11 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                        className="w-full pl-11 pr-4 py-3 bg-gray-50 border-none rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-[#7FFF00]/50 transition-all font-medium"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -88,7 +88,7 @@ export default function BlogsAdmin({ initialPosts }: BlogsProps) {
                         </div>
 
                         <div className="p-6 flex-1 flex flex-col">
-                            <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-orange-600 transition-colors font-outfit uppercase tracking-tight">
+                            <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-[#6ee600] transition-colors font-outfit uppercase tracking-tight">
                                 {post.title}
                             </h3>
                             <p className="text-gray-500 text-sm mb-6 line-clamp-2 flex-1 leading-relaxed">
@@ -111,7 +111,7 @@ export default function BlogsAdmin({ initialPosts }: BlogsProps) {
                                     <Eye size={14} className="mr-1.5" /> View
                                 </Button>
                                 <Link href={`/admin/blogs/${post.id}`} className="flex-1">
-                                    <Button className="w-full h-10 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-xs transition-all active:scale-95">
+                                    <Button className="w-full h-10 bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold rounded-xl text-xs transition-all active:scale-95">
                                         <Edit size={14} className="mr-1.5" /> Edit
                                     </Button>
                                 </Link>

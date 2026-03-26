@@ -51,11 +51,11 @@ export default function AdminLogin() {
 
             <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100 transition-all duration-300">
                 <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Lock className="w-8 h-8 text-orange-500" />
+                    <div className="w-16 h-16 bg-[#7FFF00]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#7FFF00]/20 shadow-[0_0_15px_rgba(127,255,0,0.1)]">
+                        <Lock className="w-8 h-8 text-[#7FFF00]" />
                     </div>
-                    <h1 className="text-2xl font-bold text-gray-900">CMS Admin Login</h1>
-                    <p className="text-gray-500 text-sm mt-2">Enter credentials to manage website content</p>
+                    <h1 className="text-2xl font-bold text-gray-900 italic">Ecoink <span className="text-[#7FFF00] not-italic">Admin</span></h1>
+                    <p className="text-gray-500 text-sm mt-2">Enter credentials to manage Ecoink content</p>
                 </div>
 
                 {error && (
@@ -72,8 +72,8 @@ export default function AdminLogin() {
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all disabled:opacity-50 disabled:bg-gray-50"
-                            placeholder="admin@example.com"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#7FFF00] focus:ring-2 focus:ring-[#7FFF00]/20 outline-none transition-all disabled:opacity-50 disabled:bg-gray-50 text-gray-900"
+                            placeholder="admin@ecoink.com.au"
                             disabled={loading}
                         />
                     </div>
@@ -85,7 +85,7 @@ export default function AdminLogin() {
                             required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all disabled:opacity-50 disabled:bg-gray-50"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#7FFF00] focus:ring-2 focus:ring-[#7FFF00]/20 outline-none transition-all disabled:opacity-50 disabled:bg-gray-50 text-gray-900"
                             placeholder="••••••••"
                             disabled={loading}
                         />
@@ -94,7 +94,7 @@ export default function AdminLogin() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all flex items-center justify-center gap-2"
+                        className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-black font-bold py-6 rounded-xl text-lg shadow-lg hover:shadow-[#7FFF00]/25 transition-all flex items-center justify-center gap-2"
                     >
                         {loading ? (
                             <>

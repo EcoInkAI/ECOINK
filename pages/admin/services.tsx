@@ -22,7 +22,7 @@ export default function ServicesAdmin({ initialServices }: ServicesProps) {
 
     const getScoreColor = (score: number) => {
         if (score >= 80) return 'text-green-600 bg-green-100';
-        if (score >= 50) return 'text-orange-600 bg-orange-100';
+        if (score >= 50) return 'text-[#6ee600] bg-[#7FFF00]/20';
         return 'text-red-600 bg-red-100';
     };
 
@@ -37,20 +37,20 @@ export default function ServicesAdmin({ initialServices }: ServicesProps) {
                     <div className="flex bg-gray-100 p-1.5 rounded-xl self-start">
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white shadow-sm text-orange-600' : 'text-gray-500 hover:text-gray-700'}`}
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white shadow-sm text-[#6ee600]' : 'text-gray-500 hover:text-gray-700'}`}
                         >
                             <LayoutGrid size={18} />
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
-                            className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white shadow-sm text-orange-600' : 'text-gray-500 hover:text-gray-700'}`}
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white shadow-sm text-[#6ee600]' : 'text-gray-500 hover:text-gray-700'}`}
                         >
                             <List size={18} />
                         </button>
                     </div>
                     <Link href="/admin/services/new" className="w-full sm:w-auto">
                         <Button
-                            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all"
+                            className="w-full bg-[#7FFF00] hover:bg-[#6ee600] text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-[#7FFF00]/20 active:scale-95 transition-all"
                         >
                             <Plus size={18} className="mr-2" /> Add Service
                         </Button>
@@ -79,10 +79,10 @@ export default function ServicesAdmin({ initialServices }: ServicesProps) {
                             </div>
                             <div className="p-6 md:p-8 flex-1 flex flex-col">
                                 <div className="flex justify-between items-start mb-4 text-[10px] items-center">
-                                    <h3 className="font-black text-xl text-gray-900 font-outfit uppercase tracking-tight group-hover:text-orange-600 transition-colors leading-tight">{item.name}</h3>
+                                    <h3 className="font-black text-xl text-gray-900 font-outfit uppercase tracking-tight group-hover:text-[#6ee600] transition-colors leading-tight">{item.name}</h3>
                                     <div className="flex gap-1 lg:opacity-0 lg:group-hover:opacity-100 transition-all">
                                         <Link href={`/admin/services/${item.id}`}>
-                                            <button className="p-2.5 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"><Edit size={16} /></button>
+                                            <button className="p-2.5 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-xl transition-all"><Edit size={16} /></button>
                                         </Link>
                                         <button onClick={() => handleDelete(item.id)} className="p-2.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={16} /></button>
                                     </div>
@@ -108,7 +108,7 @@ export default function ServicesAdmin({ initialServices }: ServicesProps) {
                             <tbody className="divide-y divide-gray-50">
                                 {services.map((item: any) => (
                                     <tr key={item.id} className="hover:bg-gray-50/50 transition-colors group">
-                                        <td className="px-6 py-4 font-black text-gray-900 group-hover:text-orange-600 transition-colors">{item.name}</td>
+                                        <td className="px-6 py-4 font-black text-gray-900 group-hover:text-[#6ee600] transition-colors">{item.name}</td>
                                         <td className="px-6 py-4 text-xs text-gray-400 font-mono">/{item.slug}</td>
                                         <td className="px-6 py-4">
                                             <div className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold ${getScoreColor(item.seoScore || 0)}`}>
@@ -123,7 +123,7 @@ export default function ServicesAdmin({ initialServices }: ServicesProps) {
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex justify-end gap-2 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                                                 <Link href={`/admin/services/${item.id}`}>
-                                                    <button className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"><Edit size={18} /></button>
+                                                    <button className="p-2 text-gray-400 hover:text-[#6ee600] hover:bg-[#7FFF00]/10 rounded-xl transition-all"><Edit size={18} /></button>
                                                 </Link>
                                                 <button onClick={() => handleDelete(item.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
                                             </div>

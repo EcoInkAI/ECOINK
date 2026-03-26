@@ -65,14 +65,15 @@ model Page {
   ogDescription      String?
   ogImage            String?
   noIndex            Boolean       @default(false)
+  showInNavbar       Boolean       @default(false)
+  navbarLabel        String?
+  navbarOrder        Int           @default(0)
   createdAt          DateTime      @default(now())
   updatedAt          DateTime      @updatedAt
   breadcrumbTitle    String?
   focusKeyphrase     String?
   lastSeoAudit       DateTime?
   metaRobots         String?       @default("index,follow")
-  navbarLabel        String?
-  navbarOrder        Int           @default(0)
   ogType             String?       @default("website")
   readabilityScore   Int?          @default(0)
   schemaJson         Json?
@@ -81,7 +82,6 @@ model Page {
   seoKeywords        String?
   seoScore           Int?          @default(0)
   seoTitle           String?
-  showInNavbar       Boolean       @default(false)
   twitterCard        String?       @default("summary_large_image")
   twitterDescription String?
   twitterImage       String?
@@ -113,7 +113,6 @@ model BlogPost {
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   breadcrumbTitle    String?
-  coverImageAlt      String?
   focusKeyphrase     String?
   lastSeoAudit       DateTime?
   metaRobots         String?   @default("index,follow")
@@ -129,6 +128,7 @@ model BlogPost {
   twitterDescription String?
   twitterImage       String?
   twitterTitle       String?
+  coverImageAlt      String?
   category           Category? @relation(fields: [categoryId], references: [id])
   tags               Tag[]     @relation("BlogPostToTag")
 }
@@ -152,29 +152,29 @@ model Project {
   title              String
   slug               String    @unique
   description        String
+  content            String?
   location           String?
   category           String?
   client             String?
   completionDate     DateTime?
   images             String[]
+  heroImage          String?
+  tags               Json?
+  galleryTitle       String?
+  gallerySubtitle    String?
   isVisible          Boolean   @default(true)
   metaTitle          String?
   metaDescription    String?
+  beforeImage        String?
+  afterImage         String?
+  testimonialText    String?
+  testimonialClient  String?
+  faqs               Json?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
-  afterImage         String?
-  afterImageAlt      String?
-  beforeImage        String?
-  beforeImageAlt     String?
   breadcrumbTitle    String?
   canonicalUrl       String?
-  content            String?
-  faqs               Json?
   focusKeyphrase     String?
-  gallerySubtitle    String?
-  galleryTitle       String?
-  heroImage          String?
-  heroImageAlt       String?
   lastSeoAudit       DateTime?
   metaRobots         String?   @default("index,follow")
   ogDescription      String?
@@ -188,13 +188,13 @@ model Project {
   seoKeywords        String?
   seoScore           Int?      @default(0)
   seoTitle           String?
-  tags               Json?
-  testimonialClient  String?
-  testimonialText    String?
   twitterCard        String?   @default("summary_large_image")
   twitterDescription String?
   twitterImage       String?
   twitterTitle       String?
+  afterImageAlt      String?
+  beforeImageAlt     String?
+  heroImageAlt       String?
   thumbnailImage     String?
   thumbnailImageAlt  String?
 }
@@ -204,36 +204,36 @@ model Service {
   name               String
   slug               String    @unique
   description        String
+  content            String?
   icon               String?
   image              String?
+  heroImage          String?
+  heroSubtitle       String?
+  heroBadge          String?
+  ctaText            String?
   ctaLink            String?
+  ctaTitle           String?
+  ctaDescription     String?
+  ctaBadge           String?
+  ctaPhone           String?
+  featureTitle       String?
+  featureSubtitle    String?
+  featureBadge       String?
+  metaKeywords       String?
+  trustBadges        Json?
   order              Int       @default(0)
   isVisible          Boolean   @default(true)
+  features           Json?
+  galleryImages      String[]
+  faqs               Json?
+  additionalContent  String?
+  testimonialIds     String[]
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
-  additionalContent  String?
   breadcrumbTitle    String?
   canonicalUrl       String?
-  content            String?
-  ctaBadge           String?
-  ctaDescription     String?
-  ctaPhone           String?
-  ctaText            String?
-  ctaTitle           String?
-  faqs               Json?
-  featureBadge       String?
-  featureSubtitle    String?
-  featureTitle       String?
-  features           Json?
   focusKeyphrase     String?
-  galleryImages      String[]
-  heroBadge          String?
-  heroImage          String?
-  heroImageAlt       String?
-  heroSubtitle       String?
-  imageAlt           String?
   lastSeoAudit       DateTime?
-  metaKeywords       String?
   metaRobots         String?   @default("index,follow")
   ogDescription      String?
   ogImage            String?
@@ -246,12 +246,12 @@ model Service {
   seoKeywords        String?
   seoScore           Int?      @default(0)
   seoTitle           String?
-  testimonialIds     String[]
-  trustBadges        Json?
   twitterCard        String?   @default("summary_large_image")
   twitterDescription String?
   twitterImage       String?
   twitterTitle       String?
+  heroImageAlt       String?
+  imageAlt           String?
   industryUseCases   Json?
   suppliers          Json?
   whyChooseUs        Json?
