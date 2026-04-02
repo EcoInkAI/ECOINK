@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { BookingProvider } from "@/lib/BookingContext";
 
 export default function RootLayout({
     children,
@@ -24,11 +25,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-1 pt-20 lg:pt-28">{children}</main>
-                    <Footer />
-                </div>
+                <BookingProvider>
+                    <div className="min-h-screen flex flex-col">
+                        <Navbar />
+                        <main className="flex-1 pt-20 lg:pt-28">{children}</main>
+                        <Footer />
+                    </div>
+                </BookingProvider>
             </body>
         </html>
     );

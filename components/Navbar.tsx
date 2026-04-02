@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useBooking } from "@/lib/BookingContext";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -25,8 +26,10 @@ const Navbar = () => {
         { name: "Home", href: "/" },
         { name: "EcoInk Ads", href: "/ecoink-ads" },
         { name: "EcoInk Voice", href: "/ecoink-voice" },
-        { name: "Contact", href: "/contact" },
+        { name: "Book a Call", href: "/contact" },
     ];
+
+    const { openBookingModal } = useBooking();
 
     return (
         <>
@@ -70,52 +73,65 @@ const Navbar = () => {
                                 const themeColor = isVoicePage ? "#00ffcc" : "#7FFF00"; // Cyan vs Neon Green
 
                                 return (
-                                    <Link
+                                    <button
                                         key={link.name}
-                                        href={link.href}
-                                        className="relative group"
+                                        onClick={link.name === "Book a Call" ? openBookingModal : undefined}
+                                        className="relative group cursor-pointer"
                                     >
-                                        <span
-                                            className="text-sm font-medium transition-colors"
-                                            style={{
-                                                color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
-                                            }}
-                                            onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
-                                            onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
-                                        >
-                                            {link.name}
-                                        </span>
-                                    </Link>
+                                        {link.name === "Book a Call" ? (
+                                            <span
+                                                className="text-sm font-medium transition-colors"
+                                                style={{
+                                                    color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
+                                                }}
+                                                onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
+                                                onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
+                                            >
+                                                {link.name}
+                                            </span>
+                                        ) : (
+                                            <Link href={link.href}>
+                                                <span
+                                                    className="text-sm font-medium transition-colors"
+                                                    style={{
+                                                        color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
+                                                    }}
+                                                    onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
+                                                    onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
+                                                >
+                                                    {link.name}
+                                                </span>
+                                            </Link>
+                                        )}
+                                    </button>
                                 );
                             })}
                         </nav>
 
                         {/* CTA Button - Dynamic Color */}
-                        <Link href="/contact">
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                {(() => {
-                                    const isVoicePage = pathname === "/ecoink-voice";
-                                    const themeColor = isVoicePage ? "#00ffcc" : "#7FFF00";
-                                    const shadowColor = isVoicePage ? "rgba(0, 255, 204, 0.5)" : "rgba(127, 255, 0, 0.5)";
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={openBookingModal} className="cursor-pointer">
+                            {(() => {
+                                const isVoicePage = pathname === "/ecoink-voice";
+                                const themeColor = isVoicePage ? "#00ffcc" : "#7FFF00";
+                                const shadowColor = isVoicePage ? "rgba(0, 255, 204, 0.5)" : "rgba(127, 255, 0, 0.5)";
 
-                                    return (
-                                        <Button
-                                            variant="glow"
-                                            size="lg"
-                                            className="rounded-xl px-8 tracking-wide font-bold border-white"
-                                            style={{
-                                                backgroundColor: themeColor,
-                                                borderColor: themeColor,
-                                                boxShadow: `0 0 20px ${shadowColor}`,
-                                                color: 'black'
-                                            }}
-                                        >
-                                            GET STARTED
-                                        </Button>
-                                    );
-                                })()}
-                            </motion.div>
-                        </Link>
+                                return (
+                                    <Button
+                                        variant="glow"
+                                        size="lg"
+                                        className="rounded-xl px-8 tracking-wide font-bold border-white"
+                                        style={{
+                                            backgroundColor: themeColor,
+                                            borderColor: themeColor,
+                                            boxShadow: `0 0 20px ${shadowColor}`,
+                                            color: 'black'
+                                        }}
+                                    >
+                                        BOOK A CALL
+                                    </Button>
+                                );
+                            })()}
+                        </motion.div>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -156,11 +172,11 @@ const Navbar = () => {
                                 {link.name}
                             </Link>
                         ))}
-                        <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-[80%] max-w-[300px]">
+                        <div onClick={openBookingModal} className="w-[80%] max-w-[300px] cursor-pointer">
                             <Button variant="glow" size="lg" className="w-full h-14 text-lg">
-                                Get Started
+                                Book a Call
                             </Button>
-                        </Link>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

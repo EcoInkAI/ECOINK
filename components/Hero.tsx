@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { useBooking } from "@/lib/BookingContext";
 
 const heroServices = [
     {
@@ -59,6 +60,7 @@ interface HeroProps {
 
 export default function Hero({ title, subtitle, ctaText, ctaLink = "/contact", backgroundImage, backgroundVideo, imageAlt, services = [], badge }: HeroProps) {
     const [currentService, setCurrentService] = useState(0);
+    const { openBookingModal } = useBooking();
 
     // Map CMS services to component format if provided, otherwise use fallback
     const activeServices = services && services.length > 0 ? services.map(s => ({
@@ -147,11 +149,11 @@ export default function Hero({ title, subtitle, ctaText, ctaLink = "/contact", b
                                 </p>
 
                                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                                    <Link href={displayCtaLink} className="w-full sm:w-auto">
+                                    <div onClick={openBookingModal} className="w-full sm:w-auto cursor-pointer">
                                         <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300">
                                             {displayCtaText}
                                         </Button>
-                                    </Link>
+                                    </div>
                                 </div>
                             </motion.div>
                         </AnimatePresence>

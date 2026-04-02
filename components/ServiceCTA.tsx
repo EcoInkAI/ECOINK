@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useBooking } from "@/lib/BookingContext";
 
 
 interface ServiceCTAProps {
@@ -21,6 +22,7 @@ export default function ServiceCTA({
     badge = "Free Quote Available",
     phone = "0412 345 678",
 }: ServiceCTAProps) {
+    const { openBookingModal } = useBooking();
     const validPhone = phone || "0412 345 678";
     const phoneHref = `tel:${validPhone.replace(/\s/g, '')}`;
 
@@ -48,7 +50,7 @@ export default function ServiceCTA({
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link href={ctaLink}>
+                    <div onClick={openBookingModal} className="cursor-pointer">
                         <Button
                             size="lg"
                             className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-orange-500/25 hover:shadow-2xl transition-all duration-300 group"
@@ -56,7 +58,7 @@ export default function ServiceCTA({
                             {ctaText}
                             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                    </Link>
+                    </div>
                     <a href={phoneHref}>
                         <Button
                             variant="outline"

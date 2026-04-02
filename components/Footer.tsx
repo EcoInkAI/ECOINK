@@ -5,8 +5,11 @@ import Image from "next/image";
 import { Twitter, Linkedin, Instagram } from "lucide-react";
 
 import { motion } from "framer-motion";
+import { useBooking } from "@/lib/BookingContext";
 
 const Footer = () => {
+    const { openBookingModal } = useBooking();
+
     return (
         <motion.footer
             initial={{ opacity: 0, y: 50 }}
@@ -59,12 +62,18 @@ const Footer = () => {
                             { name: "Home", href: "/" },
                             { name: "EcoInk Ads", href: "/ecoink-ads" },
                             { name: "EcoInk Voice", href: "/ecoink-voice" },
-                            { name: "Contact", href: "/contact" }
+                            { name: "Book a Call", href: "/contact" }
                         ].map((link, i) => (
                             <motion.li key={i} whileHover={{ x: 5 }}>
-                                <Link href={link.href} className="text-gray-400 hover:text-primary transition-colors text-sm">
-                                    {link.name}
-                                </Link>
+                                {link.name === "Book a Call" ? (
+                                    <button onClick={openBookingModal} className="text-gray-400 hover:text-primary transition-colors text-sm text-left">
+                                        {link.name}
+                                    </button>
+                                ) : (
+                                    <Link href={link.href} className="text-gray-400 hover:text-primary transition-colors text-sm">
+                                        {link.name}
+                                    </Link>
+                                )}
                             </motion.li>
                         ))}
                     </ul>

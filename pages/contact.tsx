@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Mail, MessageSquare, AlertCircle, BarChart2, Settings } from "lucide-react";
 import EnquiryForm from "@/components/EnquiryForm"; // Reusing form component logic or similar
 import { motion } from "framer-motion";
+import CalendlyWidget from "@/components/CalendlyWidget";
 
 export default function Contact() {
     return (
         <>
             <Head>
-                <title>Contact EcoInk | Get Started Today</title>
-                <meta name="description" content="Talk to EcoInk about custom AI solutions for your business. No pressure, honest feedback." />
+                <title>Book a Call | EcoInk AI Solutions</title>
+                <meta name="description" content="Schedule a strategy call with EcoInk to discuss custom AI solutions, automation, and voice tech for your business." />
             </Head>
 
             {/* SECTION 1: HEADER - INTEGRATED */}
@@ -37,7 +38,7 @@ export default function Contact() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-5xl font-bold mb-6 text-white text-shadow-lg"
                     >
-                        Talk to EcoInk
+                        Book a Strategy Call
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -51,50 +52,9 @@ export default function Contact() {
             </section>
 
             <section className="pb-24 relative z-30 -mt-32">
-                <div className="max-w-3xl mx-auto px-6">
-                    <div className="glass-card p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl bg-black/80 backdrop-blur-xl">
-                        <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm text-gray-400">Full Name</label>
-                                    <input type="text" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary" placeholder="John Doe" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm text-gray-400">Business Name</label>
-                                    <input type="text" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary" placeholder="Acme Corp" />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm text-gray-400">Email</label>
-                                    <input type="email" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary" placeholder="john@example.com" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm text-gray-400">Phone</label>
-                                    <input type="tel" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary" placeholder="+61..." />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm text-gray-400">What are you enquiring about?</label>
-                                <select className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary">
-                                    <option>EcoInk Voice</option>
-                                    <option>EcoInk Ads</option>
-                                    <option>Both</option>
-                                    <option>General Enquiry</option>
-                                </select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm text-gray-400">Message</label>
-                                <textarea className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-primary h-32" placeholder="Tell us about your project..."></textarea>
-                            </div>
-
-                            <Button variant="glow" size="lg" className="w-full">Submit Enquiry</Button>
-                            <p className="text-center text-xs text-gray-500">We'll get back to you as soon as possible. No spam, no pressure.</p>
-                        </form>
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="glass-card p-0 md:p-4 rounded-2xl border border-white/10 shadow-2xl bg-black/80 backdrop-blur-xl overflow-hidden">
+                        <CalendlyWidget />
                     </div>
                 </div>
             </section>
