@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Loader2, Phone, Mic, Video, Volume2, ArrowRight, X, PhoneForwarded, MicOff } from "lucide-react";
 import { motion } from "framer-motion";
+import { useBooking } from "@/lib/BookingContext";
 import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -16,6 +17,7 @@ const EnquiryForm = () => {
         business: "",
         industry: "",
     });
+    const { openBookingModal } = useBooking();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
@@ -47,7 +49,7 @@ const EnquiryForm = () => {
                     Thanks {formData.firstName}. Ivy from EcoInk will check your details and give you a call at {formData.phone} shortly.
                     <br /><span className="text-sm opacity-60 mt-2 block">(Yes, she's an AI, but she's very polite.)</span>
                 </p>
-                <Button onClick={() => setIsSuccess(false)} variant="outline" size="lg">
+                <Button onClick={openBookingModal} variant="outline" size="lg">
                     Book another call
                 </Button>
             </div>
