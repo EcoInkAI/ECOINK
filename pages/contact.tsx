@@ -1,69 +1,50 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Mail, MessageSquare, AlertCircle, BarChart2, Settings } from "lucide-react";
-import EnquiryForm from "@/components/EnquiryForm"; // Reusing form component logic or similar
+import { AlertCircle, BarChart2, Settings } from "lucide-react";
+import EnquiryForm from "@/components/EnquiryForm";
 import { motion } from "framer-motion";
-import CalendlyWidget from "@/components/CalendlyWidget";
 
 export default function Contact() {
     return (
-        <>
+        <div className="min-h-screen bg-black">
             <Head>
-                <title>Book a Call | EcoInk AI Solutions</title>
-                <meta name="description" content="Schedule a strategy call with EcoInk to discuss custom AI solutions, automation, and voice tech for your business." />
+                <title>Contact us | EcoInk AI Solutions</title>
+                <meta name="description" content="Get in touch with EcoInk to discuss custom AI solutions, automation, and voice tech for your business." />
             </Head>
 
-            {/* SECTION 1: HEADER - INTEGRATED */}
+            {/* SECTION 1: HEADER */}
             <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: "url('/images/hero-background.jpg')" }}
-                    />
-                    <div className="absolute inset-0 bg-black/40 z-10" /> {/* Re-added dark overlay */}
-                    <div className="absolute inset-0 bg-blue-500/10 z-10 mix-blend-overlay" /> {/* Blue Overlay Tint */}
+                <div className="absolute inset-0 z-0 bg-gray-900">
+                    <div className="absolute inset-0 bg-black/60 z-10" />
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative z-20 max-w-4xl mx-auto px-6 text-center"
-                >
+                <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-5xl font-bold mb-6 text-white text-shadow-lg"
+                        transition={{ duration: 0.6 }}
+                        className="text-5xl font-bold mb-6 text-white"
                     >
-                        Book a Strategy Call
+                        Contact EcoInk
                     </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="text-xl text-gray-200 max-w-2xl mx-auto text-shadow-sm"
-                    >
+                    <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                         Have a question, want to discuss a custom build, or not sure which EcoInk solution fits? Get in touch.
-                    </motion.p>
-                </motion.div>
-            </section>
-
-            <section className="pb-24 relative z-30 -mt-32">
-                <div className="max-w-5xl mx-auto px-6">
-                    <div className="glass-card p-0 md:p-4 rounded-2xl border border-white/10 shadow-2xl bg-black/80 backdrop-blur-xl overflow-hidden">
-                        <CalendlyWidget />
-                    </div>
+                    </p>
                 </div>
             </section>
 
-            {/* EXISTING CLIENT SUPPORT */}
+            {/* SECTION 2: FORM */}
+            <section className="pb-24 relative z-30 -mt-32">
+                <div className="max-w-6xl mx-auto px-6">
+                    <EnquiryForm />
+                </div>
+            </section>
+
+            {/* SECTION 3: SUPPORT */}
             <section className="py-24 bg-white/[0.02] border-t border-white/5">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold mb-4">Existing client support</h2>
+                        <h2 className="text-3xl font-bold text-white mb-4">Existing client support</h2>
                         <p className="text-gray-400">Already working with EcoInk and need help, changes, or support?</p>
                     </div>
 
@@ -78,21 +59,20 @@ export default function Contact() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: i * 0.2, duration: 0.5 }}
-                                whileHover={{ y: -5, borderColor: "rgba(255,255,255,0.2)" }}
-                                className="glass-card p-8 rounded-xl border-white/5 transition-all flex flex-col items-center text-center group"
+                                transition={{ delay: i * 0.1, duration: 0.5 }}
+                                className="p-8 rounded-xl border border-white/5 bg-white/5 flex flex-col items-center text-center group"
                             >
-                                <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-white/10 ${item.color || 'text-white'}`}>
+                                <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 ${item.color || 'text-white'}`}>
                                     <item.icon size={24} />
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-4">{item.title}</h3>
                                 <p className="text-gray-400 text-sm mb-8">{item.desc}</p>
-                                <Button variant="outline" className="mt-auto w-full">{item.cta}</Button>
+                                <Button variant="outline" className="mt-auto w-full text-white border-white/10">{item.cta}</Button>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

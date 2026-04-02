@@ -62,18 +62,12 @@ const Footer = () => {
                             { name: "Home", href: "/" },
                             { name: "EcoInk Ads", href: "/ecoink-ads" },
                             { name: "EcoInk Voice", href: "/ecoink-voice" },
-                            { name: "Book a Call", href: "/contact" }
+                            { name: "Contact", href: "/contact" }
                         ].map((link, i) => (
                             <motion.li key={i} whileHover={{ x: 5 }}>
-                                {link.name === "Book a Call" ? (
-                                    <button onClick={openBookingModal} className="text-gray-400 hover:text-primary transition-colors text-sm text-left">
-                                        {link.name}
-                                    </button>
-                                ) : (
-                                    <Link href={link.href} className="text-gray-400 hover:text-primary transition-colors text-sm">
-                                        {link.name}
-                                    </Link>
-                                )}
+                                <Link href={link.href} className="text-gray-400 hover:text-primary transition-colors text-sm">
+                                    {link.name}
+                                </Link>
                             </motion.li>
                         ))}
                     </ul>

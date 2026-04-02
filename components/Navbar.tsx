@@ -26,7 +26,7 @@ const Navbar = () => {
         { name: "Home", href: "/" },
         { name: "EcoInk Ads", href: "/ecoink-ads" },
         { name: "EcoInk Voice", href: "/ecoink-voice" },
-        { name: "Book a Call", href: "/contact" },
+        { name: "Contact", href: "/contact" },
     ];
 
     const { openBookingModal } = useBooking();
@@ -59,51 +59,28 @@ const Navbar = () => {
                     </Link>
 
                     {/* Right Side Group (Nav + CTA) */}
-                    {/* Right Side Group (Nav + CTA) */}
                     <div className="hidden md:flex items-center gap-6">
 
                         {/* Navigation Pill */}
                         <nav className="flex items-center gap-8 px-8 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
                             {navLinks.map((link) => {
                                 const isActive = pathname === link.href;
-                                // Determine active color based on link: if it's the Voice page, use Cyan, otherwise Green (or default theme)
-                                // Actually, user request: "ecoink-voice iss route pr cta ka colro shold be like this".
-                                // This implies checking the CURRENT PAGE.
                                 const isVoicePage = pathname === "/ecoink-voice";
-                                const themeColor = isVoicePage ? "#00ffcc" : "#7FFF00"; // Cyan vs Neon Green
+                                const themeColor = isVoicePage ? "#00ffcc" : "#7FFF00";
 
                                 return (
-                                    <button
-                                        key={link.name}
-                                        onClick={link.name === "Book a Call" ? openBookingModal : undefined}
-                                        className="relative group cursor-pointer"
-                                    >
-                                        {link.name === "Book a Call" ? (
-                                            <span
-                                                className="text-sm font-medium transition-colors"
-                                                style={{
-                                                    color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
-                                                }}
-                                                onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
-                                                onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
-                                            >
-                                                {link.name}
-                                            </span>
-                                        ) : (
-                                            <Link href={link.href}>
-                                                <span
-                                                    className="text-sm font-medium transition-colors"
-                                                    style={{
-                                                        color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
-                                                    }}
-                                                    onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
-                                                    onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
-                                                >
-                                                    {link.name}
-                                                </span>
-                                            </Link>
-                                        )}
-                                    </button>
+                                    <Link key={link.name} href={link.href}>
+                                        <span
+                                            className="text-sm font-medium transition-colors"
+                                            style={{
+                                                color: isActive ? themeColor : "rgb(209 213 219)", // gray-300
+                                            }}
+                                            onMouseEnter={(e) => e.currentTarget.style.color = themeColor}
+                                            onMouseLeave={(e) => e.currentTarget.style.color = isActive ? themeColor : "rgb(209 213 219)"}
+                                        >
+                                            {link.name}
+                                        </span>
+                                    </Link>
                                 );
                             })}
                         </nav>
