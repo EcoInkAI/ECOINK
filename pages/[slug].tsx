@@ -44,10 +44,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     // List of slugs that have dedicated static files in the pages directory
     const staticPages = [
-        'index', 'contact', 'faq', 'why-magri-cabinets', 'get-a-custom-quote',
-        'kitchen-cabinets', 'bathroom-vanities', 'wardrobes',
-        'tv-cabinets', 'laundry-cabinets', 'furniture', 'projects', 'blogs',
-        'ecoink-ads', 'ecoink-voice'
+        'index', 'contact', 'blogs', 'projects',
+        'ecoink-ads', 'ecoink-voice', 'get-a-custom-quote'
     ];
 
     const paths = pages
