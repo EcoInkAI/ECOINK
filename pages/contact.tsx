@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, BarChart2, Settings } from "lucide-react";
 import EnquiryForm from "@/components/EnquiryForm";
+import StandardContactForm from "@/components/StandardContactForm";
 import { motion } from "framer-motion";
 
 export default function Contact() {
@@ -33,10 +34,17 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* SECTION 2: FORM */}
+            {/* SECTION 2: FORMS */}
             <section className="pb-24 relative z-30 -mt-32">
                 <div className="max-w-6xl mx-auto px-6">
-                    <EnquiryForm />
+                    {/* STANDARD ENQUIRY FORM */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        <StandardContactForm />
+                    </motion.div>
                 </div>
             </section>
 
