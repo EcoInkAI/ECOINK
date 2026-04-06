@@ -17,9 +17,28 @@ const AdsAuditForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsLoading(false);
-        setIsSuccess(true);
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: "Ads Audit Request",
+                    message: `Business: ${formData.business}\nAd Spend: ${formData.spend}`.trim(),
+                }),
+            });
+
+            if (!res.ok) throw new Error("Failed to send audit request.");
+            
+            setIsSuccess(true);
+        } catch (err: any) {
+            console.error("Audit request error:", err);
+            // Optional local error handling
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (isSuccess) {

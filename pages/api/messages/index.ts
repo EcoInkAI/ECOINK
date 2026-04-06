@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../lib/prisma';
+import { resend } from '../../../lib/resend';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
@@ -8,7 +9,46 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (req.method === 'POST') {
-        const data = await prisma.contactMessage.create({ data: req.body });
+        const { name, email, phone, subject, message } = req.body;
+        
+        // Save to Database
+        const data = await prisma.contactMessage.create({
+            data: { name, email, phone, subject, message }
+        });
+
+        // Send Email via Resend if configured
+        if (resend) {
+            try {
+                // Fetch admin contact email from settings
+                const settings = await prisma.globalSettings.findFirst({ where: { id: 1 } });
+                const adminEmail = settings?.contactEmail || "anonymoose@ry.ai"; // Fallback address
+
+                const emailSubject = subject ? `New Contact Form: ${subject}` : `New Lead from ${name}`;
+                
+                await resend.emails.send({
+                    from: 'EcoInk <onboarding@resend.dev>', // Resend standard sender
+                    to: adminEmail,
+                    subject: emailSubject,
+                    html: `
+                        <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                            <h2 style="color: #6366f1;">New Lead Received</h2>
+                            <p><strong>Name:</strong> ${name}</p>
+                            <p><strong>Email:</strong> ${email}</p>
+                            ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+                            ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
+                            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+                            <p><strong>Message:</strong></p>
+                            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px;">
+                                ${message}
+                            </div>
+                        </div>
+                    `,
+                });
+            } catch (err) {
+                console.error("Failed to send email notification:", err);
+            }
+        }
+
         return res.status(201).json(data);
     }
 

@@ -24,11 +24,28 @@ export default function ServiceContactForm({ defaultService = "General Enquiry" 
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: `Service Enquiry: ${formData.installationType}`,
+                    message: `Postcode: ${formData.postcode}\nInstallation Type: ${formData.installationType}\nDetails: ${formData.message}`.trim(),
+                }),
+            });
 
-        setIsSubmitting(false);
-        setIsSubmitted(true);
+            if (!res.ok) throw new Error("Failed to send enquiry.");
+
+            setIsSubmitted(true);
+        } catch (err: any) {
+            console.error("Submission error:", err);
+            // Optional: set local error state to show validation message
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (isSubmitted) {

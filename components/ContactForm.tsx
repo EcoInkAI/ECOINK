@@ -54,15 +54,31 @@ export default function ContactForm() {
 
         setIsLoading(true);
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: "General Contact Inquiry",
+                    message: formData.message,
+                }),
+            });
 
-        setIsLoading(false);
-        setIsSuccess(true);
-        setFormData({ name: "", email: "", phone: "", message: "" });
+            if (!res.ok) throw new Error("Failed to send message.");
 
-        // Reset success message after 5 seconds
-        setTimeout(() => setIsSuccess(false), 5000);
+            setIsSuccess(true);
+            setFormData({ name: "", email: "", phone: "", message: "" });
+
+            // Reset success message after 5 seconds
+            setTimeout(() => setIsSuccess(false), 5000);
+        } catch (err: any) {
+            setErrors({ message: err.message || "Failed to send message. Please try again." });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (

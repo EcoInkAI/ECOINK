@@ -25,10 +25,27 @@ const StandardContactForm = () => {
         }
 
         setIsLoading(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsLoading(false);
-        setIsSuccess(true);
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: "Standard Contact Enquiry",
+                    message: `Business: ${formData.business}\nMessage: ${formData.message}`.trim(),
+                }),
+            });
+
+            if (!res.ok) throw new Error("Failed to send enquiry.");
+            
+            setIsSuccess(true);
+        } catch (err: any) {
+            setError(err.message || "Something went wrong.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (isSuccess) {
