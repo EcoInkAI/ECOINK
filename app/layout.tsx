@@ -11,6 +11,9 @@ export const metadata: Metadata = {
         icon: '/Logo/logo.png',
         apple: '/Logo/logo.png',
     },
+    verification: {
+        google: 'IYY41q_TNuCvYtr-NF3llV0zHLjAO0Wsq3caqbgy5W8',
+    },
 };
 
 import Navbar from "@/components/Navbar";

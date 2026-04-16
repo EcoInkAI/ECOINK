@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/logo/logo.png" type="image/png" />
         <meta name="theme-color" content="#0a0a0a" />
+        <meta name="google-site-verification" content="IYY41q_TNuCvYtr-NF3llV0zHLjAO0Wsq3caqbgy5W8" />
         
         {/* Fonts are imported in globals.css, but preconnect helps */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
