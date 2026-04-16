@@ -109,14 +109,14 @@ export default function MessagesAdmin({ initialMessages }: MessagesProps) {
                                         <Phone size={18} className="text-[#6ee600]" />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase">Phone</p>
-                                            <p className="text-sm font-medium">{selected.phone || 'N/A'}</p>
+                                            <p className="text-sm font-medium text-gray-900">{selected.phone || 'N/A'}</p>
                                         </div>
                                     </div>
                                     <div className="bg-white border p-4 rounded-xl flex items-center gap-3">
                                         <Calendar size={18} className="text-[#6ee600]" />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase">Received</p>
-                                            <p className="text-sm font-medium"><FormattedDate date={selected.createdAt} showTime /></p>
+                                            <p className="text-sm font-medium text-gray-900"><FormattedDate date={selected.createdAt} showTime /></p>
                                         </div>
                                     </div>
                                 </div>
