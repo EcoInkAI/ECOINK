@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === 'POST') {
         const { name, email, phone, subject, message } = req.body;
+        console.log("📥 New form submission received:", { name, email, phone, subject });
         
         // Save to Database
         const data = await prisma.contactMessage.create({
@@ -21,11 +22,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             try {
                 // Fetch admin contact email from settings
                 const settings = await prisma.globalSettings.findFirst({ where: { id: 1 } });
-                const adminEmail = settings?.contactEmail || "anonymoose@ry.ai"; // Fallback address
+                const adminEmail = settings?.contactEmail || "james@ecoinkdigital.com"; // Updated fallback address
+
+                console.log("📨 Attempting to send email notification...");
+                console.log(`📍 Recipient: ${adminEmail}`);
 
                 const emailSubject = subject ? `New Contact Form: ${subject}` : `New Lead from ${name}`;
                 
-                await resend.emails.send({
+                const response = await resend.emails.send({
                     from: 'EcoInk <onboarding@resend.dev>', // Resend standard sender
                     to: adminEmail,
                     subject: emailSubject,
@@ -44,9 +48,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         </div>
                     `,
                 });
+
+                console.log("✅ Email sent successfully:", response);
             } catch (err) {
-                console.error("Failed to send email notification:", err);
+                console.error("❌ Failed to send email notification:", err);
             }
+        } else {
+            console.warn("⚠️ Resend is not configured (missing API key). Skipping email notification.");
         }
 
         return res.status(201).json(data);
