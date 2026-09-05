@@ -96,14 +96,10 @@ const Footer = () => {
                     </p>
                     <span className="hidden md:block w-px h-3 bg-white/10" />
                     <p className="text-gray-500 text-[10px] font-medium tracking-wide">
-                        Built and managed by {" "}
-                        <Link 
-                            href="https://zentecglobal.com.au" 
-                            target="_blank"
-                            className="text-[#7FFF00] font-black uppercase hover:underline transition-all"
-                        >
-                            Zentec Global
-                        </Link>
+                        Powered by{" "}
+                        <span className="text-[#7FFF00] font-bold tracking-wider uppercase">
+                            EcoInk AI Solutions
+                        </span>
                     </p>
                 </div>
                 <div className="flex gap-6 text-xs text-gray-500">
