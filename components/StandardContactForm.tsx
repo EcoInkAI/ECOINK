@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, CheckCircle, Send, Phone, Mail, User, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
+import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
 
 const StandardContactForm = () => {
     const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ const StandardContactForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -40,6 +43,9 @@ const StandardContactForm = () => {
 
             if (!res.ok) throw new Error("Failed to send enquiry.");
             
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
             setIsSuccess(true);
         } catch (err: any) {
             setError(err.message || "Something went wrong.");
@@ -50,22 +56,31 @@ const StandardContactForm = () => {
 
     if (isSuccess) {
         return (
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-12 rounded-3xl border border-primary/20 text-center flex flex-col items-center justify-center min-h-[400px] w-full"
-            >
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                    <CheckCircle size={40} />
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
-                <p className="text-gray-400 mb-8 max-w-lg text-lg">
-                    Thanks {formData.name}. We've received your enquiry and will get back to you within 24 hours.
-                </p>
-                <Button onClick={() => setIsSuccess(false)} variant="outline" size="lg">
-                    Send another message
-                </Button>
-            </motion.div>
+            <>
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-card p-12 rounded-3xl border border-primary/20 text-center flex flex-col items-center justify-center min-h-[400px] w-full"
+                >
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
+                        <CheckCircle size={40} />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
+                    <p className="text-gray-400 mb-8 max-w-lg text-lg">
+                        Thanks {formData.name}. We've received your enquiry and will get back to you within 24 hours.
+                    </p>
+                    <Button onClick={() => setIsSuccess(false)} variant="outline" size="lg">
+                        Send another message
+                    </Button>
+                </motion.div>
+                <SubmissionStatusModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    emailStatus={emailStatus}
+                    title="Contact Inquiry"
+                    description="Thank you! We've received your enquiry."
+                />
+            </>
         );
     }
 

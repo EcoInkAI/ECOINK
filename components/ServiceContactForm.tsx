@@ -7,9 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Send, CheckCircle, Upload } from "lucide-react";
 
+import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
+
 export default function ServiceContactForm({ defaultService = "General Enquiry" }: { defaultService?: string }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -39,10 +43,12 @@ export default function ServiceContactForm({ defaultService = "General Enquiry" 
 
             if (!res.ok) throw new Error("Failed to send enquiry.");
 
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
             setIsSubmitted(true);
         } catch (err: any) {
             console.error("Submission error:", err);
-            // Optional: set local error state to show validation message
         } finally {
             setIsSubmitting(false);
         }
@@ -50,22 +56,31 @@ export default function ServiceContactForm({ defaultService = "General Enquiry" 
 
     if (isSubmitted) {
         return (
-            <Card className="border-0 shadow-lg bg-orange-50/50">
-                <CardContent className="pt-6 flex flex-col items-center text-center py-12">
-                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-                        <CheckCircle size={32} />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Enquiry Sent!</h3>
-                    <p className="text-gray-600 mb-6">We'll be in touch shortly to discuss your custom project.</p>
-                    <Button
-                        variant="outline"
-                        onClick={() => setIsSubmitted(false)}
-                        className="border-orange-200 text-orange-600 hover:bg-orange-50"
-                    >
-                        Send Another Enquiry
-                    </Button>
-                </CardContent>
-            </Card>
+            <>
+                <Card className="border-0 shadow-lg bg-orange-50/50">
+                    <CardContent className="pt-6 flex flex-col items-center text-center py-12">
+                        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                            <CheckCircle size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">Enquiry Sent!</h3>
+                        <p className="text-gray-600 mb-6">We'll be in touch shortly to discuss your custom project.</p>
+                        <Button
+                            variant="outline"
+                            onClick={() => setIsSubmitted(false)}
+                            className="border-orange-200 text-orange-600 hover:bg-orange-50"
+                        >
+                            Send Another Enquiry
+                        </Button>
+                    </CardContent>
+                </Card>
+                <SubmissionStatusModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    emailStatus={emailStatus}
+                    title="Service Enquiry Received"
+                    description="Your request has been submitted successfully."
+                />
+            </>
         );
     }
 

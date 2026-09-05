@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ContactFormData, ContactFormErrors } from "@/types";
 
+import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
+
 export default function ContactForm() {
     const [formData, setFormData] = useState<ContactFormData>({
         name: "",
@@ -15,6 +17,8 @@ export default function ContactForm() {
     const [errors, setErrors] = useState<ContactFormErrors>({});
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     const validateForm = (): boolean => {
         const newErrors: ContactFormErrors = {};
@@ -69,11 +73,11 @@ export default function ContactForm() {
 
             if (!res.ok) throw new Error("Failed to send message.");
 
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
             setIsSuccess(true);
             setFormData({ name: "", email: "", phone: "", message: "" });
-
-            // Reset success message after 5 seconds
-            setTimeout(() => setIsSuccess(false), 5000);
         } catch (err: any) {
             setErrors({ message: err.message || "Failed to send message. Please try again." });
         } finally {
@@ -95,23 +99,32 @@ export default function ContactForm() {
 
     if (isSuccess) {
         return (
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-12 text-center shadow-lg border border-green-200">
-                <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-                    <CheckCircle className="w-10 h-10 text-white" />
+            <>
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-12 text-center shadow-lg border border-green-200">
+                    <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+                        <CheckCircle className="w-10 h-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-green-800 mb-4">
+                        Message Sent Successfully!
+                    </h3>
+                    <p className="text-green-700 mb-6">
+                        Thank you for contacting EcoInk. We'll get back to you within 24 hours.
+                    </p>
+                    <Button
+                        onClick={() => setIsSuccess(false)}
+                        className="bg-green-600 hover:bg-green-700 text-white"
+                    >
+                        Send Another Message
+                    </Button>
                 </div>
-                <h3 className="text-2xl font-bold text-green-800 mb-4">
-                    Message Sent Successfully!
-                </h3>
-                <p className="text-green-700 mb-6">
-                    Thank you for contacting Magri Cabinets. We'll get back to you within 24 hours.
-                </p>
-                <Button
-                    onClick={() => setIsSuccess(false)}
-                    className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                    Send Another Message
-                </Button>
-            </div>
+                <SubmissionStatusModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    emailStatus={emailStatus}
+                    title="Message Sent"
+                    description="Thank you for reaching out to EcoInk."
+                />
+            </>
         );
     }
 

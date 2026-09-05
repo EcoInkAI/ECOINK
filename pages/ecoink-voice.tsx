@@ -1,14 +1,60 @@
+import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Phone, CheckCircle, Calendar, Clock, RotateCcw, Zap, Database, Globe, ArrowRight } from "lucide-react";
+import { Phone, CheckCircle, Calendar, Clock, RotateCcw, Zap, Database, Globe, ArrowRight, Loader2 } from "lucide-react";
 import EnquiryForm from "@/components/EnquiryForm";
 import VoiceWaveBackground from "@/components/VoiceWaveBackground";
 import SeamlessIntegrationDiagram from "@/components/SeamlessIntegrationDiagram";
 import { motion } from "framer-motion";
 
+import SubmissionStatusModal, { EmailStatus } from "@/components/SubmissionStatusModal";
+
 export default function EcoInkVoice() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        requirements: ""
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [error, setError] = useState("");
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showStatusModal, setShowStatusModal] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setIsLoading(true);
+
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: "EcoInk Voice Consultation Request",
+                    message: formData.requirements,
+                }),
+            });
+
+            if (!res.ok) throw new Error("Failed to send consultation request.");
+
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowStatusModal(true);
+            setIsSuccess(true);
+            setFormData({ name: "", email: "", phone: "", requirements: "" });
+        } catch (err: any) {
+            setError(err.message || "Failed to submit. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
     return (
         <>
             <Head>
@@ -230,14 +276,88 @@ export default function EcoInkVoice() {
                     </div>
 
                     <div className="glass-card p-8 rounded-2xl border border-accent/20">
-                        {/* Simplified form for demo */}
-                        <h3 className="text-xl font-bold text-white mb-6">Request a Consultation</h3>
-                        <form className="space-y-4">
-                            <input type="text" placeholder="Full Name" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent" />
-                            <input type="email" placeholder="Email Address" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent" />
-                            <textarea placeholder="What are you looking to automate?" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent h-32" />
-                            <Button variant="glow" className="w-full border-accent bg-accent text-black hover:bg-accent/90 shadow-[0_0_15px_rgba(0,255,204,0.3)]">Request Consultation</Button>
-                        </form>
+                        {isSuccess ? (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="text-center py-8 flex flex-col items-center justify-center min-h-[300px]"
+                            >
+                                <div className="w-16 h-16 bg-accent/20 text-accent rounded-full flex items-center justify-center mb-4">
+                                    <CheckCircle size={32} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-2">Request Received</h3>
+                                <p className="text-gray-300 mb-6">Thank you. We'll review your requirements and reach out to map your custom voice system.</p>
+                                <Button onClick={() => setIsSuccess(false)} variant="outline" className="border-accent/50 text-accent hover:bg-accent hover:text-black">
+                                    Send Another Request
+                                </Button>
+                            </motion.div>
+                        ) : (
+                            <>
+                                <h3 className="text-xl font-bold text-white mb-6">Request a Consultation</h3>
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            placeholder="Full Name *"
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent transition-colors"
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="email"
+                                            placeholder="Email Address *"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent transition-colors"
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone Number (Optional)"
+                                            value={formData.phone}
+                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent transition-colors"
+                                        />
+                                    </div>
+                                    <div>
+                                        <textarea
+                                            placeholder="What are you looking to automate? *"
+                                            value={formData.requirements}
+                                            onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
+                                            required
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white outline-none focus:border-accent h-32 transition-colors resize-none"
+                                        />
+                                    </div>
+
+                                    {error && (
+                                        <p className="text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                                            {error}
+                                        </p>
+                                    )}
+
+                                    <Button
+                                        type="submit"
+                                        variant="glow"
+                                        disabled={isLoading}
+                                        className="w-full border-accent bg-accent text-black hover:bg-accent/90 shadow-[0_0_15px_rgba(0,255,204,0.3)]"
+                                    >
+                                        {isLoading ? (
+                                            <>
+                                                <Loader2 className="animate-spin mr-2" size={18} />
+                                                Submitting Request...
+                                            </>
+                                        ) : (
+                                            "Request Consultation"
+                                        )}
+                                    </Button>
+                                </form>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
@@ -266,6 +386,15 @@ export default function EcoInkVoice() {
                     </Link>
                 </div>
             </section>
+
+            {/* Status Modal */}
+            <SubmissionStatusModal
+                isOpen={showStatusModal}
+                onClose={() => setShowStatusModal(false)}
+                emailStatus={emailStatus}
+                title="Voice Consultation Request"
+                description="We've received your consultation inquiry."
+            />
         </>
     );
 }

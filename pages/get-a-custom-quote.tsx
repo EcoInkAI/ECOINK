@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SubmissionStatusModal, { EmailStatus } from "@/components/SubmissionStatusModal";
 
 export default function GetACustomQuote() {
     const [formData, setFormData] = useState({
@@ -13,6 +14,9 @@ export default function GetACustomQuote() {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState("");
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -21,13 +25,33 @@ export default function GetACustomQuote() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError("");
         setIsSubmitting(true);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: `Custom Quote Request: ${formData.projectType || 'General'}`,
+                    message: `Project Type: ${formData.projectType}\nDetails: ${formData.message}`.trim(),
+                }),
+            });
 
-        setIsSubmitting(false);
-        setIsSubmitted(true);
+            if (!res.ok) throw new Error("Failed to send quote request.");
+
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
+            setIsSubmitted(true);
+        } catch (err: any) {
+            setError(err.message || "Something went wrong. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const projectTypes = [
@@ -296,6 +320,14 @@ export default function GetACustomQuote() {
                     </div>
                 </div>
             </section>
+
+            <SubmissionStatusModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                emailStatus={emailStatus}
+                title="Quote Request Received"
+                description="We've received your custom quote request."
+            />
         </>
     );
 }

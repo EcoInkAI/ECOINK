@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
 
 const AdsAuditForm = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const AdsAuditForm = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,10 +35,12 @@ const AdsAuditForm = () => {
 
             if (!res.ok) throw new Error("Failed to send audit request.");
             
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
             setIsSuccess(true);
         } catch (err: any) {
             console.error("Audit request error:", err);
-            // Optional local error handling
         } finally {
             setIsLoading(false);
         }
@@ -43,20 +48,30 @@ const AdsAuditForm = () => {
 
     if (isSuccess) {
         return (
-            <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="glass-card p-8 rounded-2xl flex flex-col items-center text-center justify-center min-h-[500px]"
-            >
-                <h3 className="text-2xl font-bold text-white mb-4">Request Received</h3>
-                <p className="text-gray-400">We'll be in touch shortly to review your ad setup.</p>
-                <Button onClick={() => setIsSuccess(false)} variant="outline" className="mt-8">Close</Button>
-            </motion.div>
+            <>
+                <motion.div
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="glass-card p-8 rounded-2xl flex flex-col items-center text-center justify-center min-h-[500px]"
+                >
+                    <h3 className="text-2xl font-bold text-white mb-4">Request Received</h3>
+                    <p className="text-gray-400">We'll be in touch shortly to review your ad setup.</p>
+                    <Button onClick={() => setIsSuccess(false)} variant="outline" className="mt-8">Close</Button>
+                </motion.div>
+                <SubmissionStatusModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    emailStatus={emailStatus}
+                    title="Google Ads Audit Request"
+                    description="Your audit request was submitted successfully."
+                />
+            </>
         );
     }
 
     return (
-        <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl border border-white/10">
-            <h3 className="text-xl font-bold text-white mb-6">Request My Free Audit</h3>
+        <>
+            <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl border border-white/10">
+                <h3 className="text-xl font-bold text-white mb-6">Request My Free Audit</h3>
 
             <div className="space-y-4">
                 <input
@@ -115,6 +130,14 @@ const AdsAuditForm = () => {
                 </p>
             </div>
         </form>
+        <SubmissionStatusModal
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+            emailStatus={emailStatus}
+            title="Google Ads Audit Request"
+            description="Your audit request was submitted successfully."
+        />
+    </>
     );
 };
 

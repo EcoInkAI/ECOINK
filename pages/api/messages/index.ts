@@ -17,47 +17,71 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             data: { name, email, phone, subject, message }
         });
 
+        let emailStatus = {
+            delivered: false,
+            recipient: "james@ecoinkdigital.com",
+            error: null as string | null
+        };
+
         // Send Email via Resend if configured
         if (resend) {
             try {
-                // Fetch admin contact email from settings
+                // Fetch admin contact email from settings or environment
                 const settings = await prisma.globalSettings.findFirst({ where: { id: 1 } });
-                const adminEmail = settings?.contactEmail || "james@ecoinkdigital.com"; // Updated fallback address
+                const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || settings?.contactEmail || "james@ecoinkdigital.com";
+                const fromEmail = process.env.RESEND_FROM_EMAIL || 'EcoInk <onboarding@resend.dev>';
+                emailStatus.recipient = adminEmail;
 
                 console.log("📨 Attempting to send email notification...");
+                console.log(`📍 From: ${fromEmail}`);
                 console.log(`📍 Recipient: ${adminEmail}`);
 
                 const emailSubject = subject ? `New Contact Form: ${subject}` : `New Lead from ${name}`;
                 
                 const response = await resend.emails.send({
-                    from: 'EcoInk <onboarding@resend.dev>', // Resend standard sender
+                    from: fromEmail,
                     to: adminEmail,
                     subject: emailSubject,
                     html: `
-                        <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                            <h2 style="color: #6366f1;">New Lead Received</h2>
-                            <p><strong>Name:</strong> ${name}</p>
-                            <p><strong>Email:</strong> ${email}</p>
+                        <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-width: 600px;">
+                            <h2 style="color: #10b981; margin-top: 0;">New EcoInk Lead Received</h2>
+                            <p><strong>Name:</strong> ${name || 'N/A'}</p>
+                            <p><strong>Email:</strong> ${email || 'N/A'}</p>
                             ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
                             ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
                             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                            <p><strong>Message:</strong></p>
-                            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px;">
-                                ${message}
+                            <p><strong>Message / Details:</strong></p>
+                            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-family: monospace;">
+${message || 'No additional message provided.'}
                             </div>
+                            <p style="font-size: 11px; color: #888; margin-top: 25px;">Sent from EcoInk Web Portal</p>
                         </div>
                     `,
                 });
 
-                console.log("✅ Email sent successfully:", response);
-            } catch (err) {
+                if (response.error) {
+                    console.error("❌ Resend API returned error:", response.error);
+                    emailStatus.delivered = false;
+                    emailStatus.error = response.error.message || JSON.stringify(response.error);
+                } else {
+                    console.log("✅ Email sent successfully:", response);
+                    emailStatus.delivered = true;
+                }
+            } catch (err: any) {
                 console.error("❌ Failed to send email notification:", err);
+                emailStatus.delivered = false;
+                emailStatus.error = err.message || "Unknown error occurred while sending email via Resend.";
             }
         } else {
             console.warn("⚠️ Resend is not configured (missing API key). Skipping email notification.");
+            emailStatus.delivered = false;
+            emailStatus.error = "Resend API key is not configured in server environment (RESEND_API_KEY).";
         }
 
-        return res.status(201).json(data);
+        return res.status(201).json({
+            ...data,
+            emailStatus
+        });
     }
 
     return res.status(405).end();

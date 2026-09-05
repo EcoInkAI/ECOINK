@@ -7,6 +7,7 @@ import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import AnimatedOrb from "./AnimatedOrb";
+import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
 
 const EnquiryForm = () => {
     const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ const EnquiryForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
+    const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,6 +50,9 @@ const EnquiryForm = () => {
 
             if (!res.ok) throw new Error("Failed to send request.");
             
+            const data = await res.json();
+            setEmailStatus(data.emailStatus || null);
+            setShowModal(true);
             setIsSuccess(true);
         } catch (err: any) {
             setError(err.message || "Something went wrong.");
@@ -57,19 +63,28 @@ const EnquiryForm = () => {
 
     if (isSuccess) {
         return (
-            <div className="glass-card p-12 rounded-3xl border border-primary/20 text-center flex flex-col items-center justify-center min-h-[500px] w-full max-w-5xl mx-auto">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                    <CheckCircle size={40} />
+            <>
+                <div className="glass-card p-12 rounded-3xl border border-primary/20 text-center flex flex-col items-center justify-center min-h-[500px] w-full max-w-5xl mx-auto">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
+                        <CheckCircle size={40} />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-4">You're on the list!</h3>
+                    <p className="text-gray-400 mb-8 max-w-lg text-lg">
+                        Thanks {formData.firstName}. Ivy from EcoInk will check your details and give you a call at {formData.phone} shortly.
+                        <br /><span className="text-sm opacity-60 mt-2 block">(Yes, she's an AI, but she's very polite.)</span>
+                    </p>
+                    <Button onClick={openBookingModal} variant="outline" size="lg">
+                        Book another call
+                    </Button>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">You're on the list!</h3>
-                <p className="text-gray-400 mb-8 max-w-lg text-lg">
-                    Thanks {formData.firstName}. Ivy from EcoInk will check your details and give you a call at {formData.phone} shortly.
-                    <br /><span className="text-sm opacity-60 mt-2 block">(Yes, she's an AI, but she's very polite.)</span>
-                </p>
-                <Button onClick={openBookingModal} variant="outline" size="lg">
-                    Book another call
-                </Button>
-            </div>
+                <SubmissionStatusModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    emailStatus={emailStatus}
+                    title="Ivy Call Request"
+                    description="Your request for an AI phone call has been recorded."
+                />
+            </>
         );
     }
 
