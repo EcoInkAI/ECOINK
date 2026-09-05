@@ -1,24 +1,20 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Loader2, Phone, Mic, Video, Volume2, ArrowRight, X, PhoneForwarded, MicOff } from "lucide-react";
+import { CheckCircle, Loader2, Phone, Mail, Building2, Sparkles, Zap, Target, Layers, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useBooking } from "@/lib/BookingContext";
-import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import AnimatedOrb from "./AnimatedOrb";
 import SubmissionStatusModal, { EmailStatus } from "./SubmissionStatusModal";
 
 const EnquiryForm = () => {
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         phone: "",
         business: "",
-        industry: "",
+        service: "Full System (Ads + Voice + Automations)",
+        message: "",
     });
-    const { openBookingModal } = useBooking();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
@@ -29,8 +25,8 @@ const EnquiryForm = () => {
         e.preventDefault();
         setError("");
 
-        if (!formData.firstName || !formData.email || !formData.phone) {
-            setError("Please fill in all required fields.");
+        if (!formData.name || !formData.email || !formData.phone) {
+            setError("Please fill in all required fields (Name, Email, Phone).");
             return;
         }
 
@@ -40,236 +36,243 @@ const EnquiryForm = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: `${formData.firstName} ${formData.lastName}`.trim(),
-                    email: formData.email,
-                    phone: formData.phone,
-                    subject: "Ivy Call Request",
-                    message: `Business: ${formData.business}\nIndustry: ${formData.industry}`.trim(),
+                    name: formData.name.trim(),
+                    email: formData.email.trim(),
+                    phone: formData.phone.trim(),
+                    subject: `New Inquiry: ${formData.service}`,
+                    message: `Business: ${formData.business}\nService Interested In: ${formData.service}\n\nProject Requirements:\n${formData.message}`.trim(),
                 }),
             });
 
             if (!res.ok) throw new Error("Failed to send request.");
-            
+
             const data = await res.json();
             setEmailStatus(data.emailStatus || null);
             setShowModal(true);
             setIsSuccess(true);
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                business: "",
+                service: "Full System (Ads + Voice + Automations)",
+                message: ""
+            });
         } catch (err: any) {
-            setError(err.message || "Something went wrong.");
+            setError(err.message || "Something went wrong. Please try again.");
         } finally {
             setIsLoading(false);
         }
     };
 
-    if (isSuccess) {
-        return (
-            <>
-                <div className="glass-card p-12 rounded-3xl border border-primary/20 text-center flex flex-col items-center justify-center min-h-[500px] w-full max-w-5xl mx-auto">
-                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-                        <CheckCircle size={40} />
-                    </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">You're on the list!</h3>
-                    <p className="text-gray-400 mb-8 max-w-lg text-lg">
-                        Thanks {formData.firstName}. Ivy from EcoInk will check your details and give you a call at {formData.phone} shortly.
-                        <br /><span className="text-sm opacity-60 mt-2 block">(Yes, she's an AI, but she's very polite.)</span>
-                    </p>
-                    <Button onClick={openBookingModal} variant="outline" size="lg">
-                        Book another call
-                    </Button>
-                </div>
-                <SubmissionStatusModal
-                    isOpen={showModal}
-                    onClose={() => setShowModal(false)}
-                    emailStatus={emailStatus}
-                    title="Ivy Call Request"
-                    description="Your request for an AI phone call has been recorded."
-                />
-            </>
-        );
-    }
-
     return (
         <div className="w-full max-w-6xl mx-auto">
-            <div className="glass-card rounded-[2.5rem] border border-white/10 bg-black/40 backdrop-blur-xl overflow-hidden flex flex-col lg:flex-row relative shadow-2xl">
+            <div className="glass-card rounded-[2.5rem] border border-white/10 bg-black/50 backdrop-blur-xl overflow-hidden flex flex-col lg:flex-row relative shadow-2xl">
                 {/* Decorative Background Blob */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none z-0" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none z-0" />
 
-                {/* LEFT: FORM SECTION */}
+                {/* LEFT: NORMAL CONTACT FORM */}
                 <div className="flex-1 p-8 md:p-12 lg:p-16 relative z-10 flex flex-col justify-center border-r border-white/5">
-                    <div className="mb-10">
-                        <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                            Receive a phone call from <span className="text-primary text-gradient">Ivy</span>
+                    <div className="mb-8">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+                            <Sparkles size={14} /> Get in Touch
+                        </div>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+                            Let's talk <span className="text-gradient">Growth</span>
                         </h3>
-                        <p className="text-gray-400 text-lg">
-                            Experience the speed of EcoInk Voice firsthand. Enter your details and our AI agent will call you within 60 seconds.
+                        <p className="text-gray-400 text-sm md:text-base">
+                            Ready to scale your service business? Tell us about your goals with AI Voice, Google Ads, or Automations.
                         </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">First Name <span className="text-primary">*</span></label>
+                                <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                    Full Name <span className="text-primary">*</span>
+                                </label>
                                 <input
                                     type="text"
-                                    value={formData.firstName}
-                                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-                                    placeholder="Enter your first name"
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    required
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600 text-sm"
+                                    placeholder="John Smith"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">Last Name</label>
-                                <input
-                                    type="text"
-                                    value={formData.lastName}
-                                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-                                    placeholder="Enter your last name"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">Email <span className="text-primary">*</span></label>
+                                <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                    Email Address <span className="text-primary">*</span>
+                                </label>
                                 <input
                                     type="email"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-                                    placeholder="you@company.com"
+                                    required
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600 text-sm"
+                                    placeholder="john@example.com"
                                 />
                             </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">Phone Number <span className="text-primary">*</span></label>
+                                <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                    Phone Number <span className="text-primary">*</span>
+                                </label>
                                 <div className="phone-input-container">
                                     <PhoneInput
                                         international
                                         defaultCountry="AU"
-                                        countries={["AU", "US", "GB"]}
+                                        countries={["AU", "US", "GB", "NZ", "CA"]}
                                         value={formData.phone}
                                         onChange={(value) => setFormData({ ...formData, phone: value || "" })}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary outline-none transition-all placeholder:text-gray-600 [&_input]:bg-transparent [&_input]:outline-none [&_input]:text-white [&_input]:ml-2"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary outline-none transition-all placeholder:text-gray-600 [&_input]:bg-transparent [&_input]:outline-none [&_input]:text-white [&_input]:ml-2 text-sm"
                                     />
                                 </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                    Business Name
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formData.business}
+                                    onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600 text-sm"
+                                    placeholder="Your Company Name"
+                                />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-300">Business Name</label>
-                            <input
-                                type="text"
-                                value={formData.business}
-                                onChange={(e) => setFormData({ ...formData, business: e.target.value })}
-                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-                                placeholder="Where do you work?"
+                            <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                What solution are you looking for?
+                            </label>
+                            <select
+                                value={formData.service}
+                                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                                className="w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm"
+                            >
+                                <option value="Full System (Ads + Voice + Automations)">Full System (Ads + Voice + Automations)</option>
+                                <option value="EcoInk Voice (AI Call Handling & Qualification)">EcoInk Voice (AI Call Handling & Qualification)</option>
+                                <option value="EcoInk Ads (High-Intent Google Ads)">EcoInk Ads (High-Intent Google Ads)</option>
+                                <option value="Custom Automations & CRM Integration">Custom Automations & CRM Integration</option>
+                                <option value="Other / General Enquiry">Other / General Enquiry</option>
+                            </select>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                                Tell us about your project or requirements
+                            </label>
+                            <textarea
+                                value={formData.message}
+                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                rows={3}
+                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600 text-sm resize-none"
+                                placeholder="Describe what you want to automate or scale..."
                             />
                         </div>
 
-                        {error && <p className="text-red-400 text-sm flex items-center gap-2 font-medium bg-red-400/10 p-3 rounded-lg"><div className="w-1.5 h-1.5 bg-red-400 rounded-full" /> {error}</p>}
+                        {error && (
+                            <p className="text-red-400 text-xs flex items-center gap-2 font-medium bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                                <span className="w-1.5 h-1.5 bg-red-400 rounded-full" /> {error}
+                            </p>
+                        )}
 
-                        <div className="pt-4">
+                        <div className="pt-2">
                             <Button
                                 type="submit"
-                                className="w-full h-14 text-lg font-bold bg-primary text-black hover:bg-white hover:text-black transition-all rounded-xl shadow-[0_0_20px_rgba(127,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+                                className="w-full h-13 text-base font-bold bg-primary text-black hover:bg-white hover:text-black transition-all rounded-xl shadow-[0_0_20px_rgba(127,255,0,0.25)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
                                 disabled={isLoading}
                             >
                                 {isLoading ? (
                                     <>
-                                        <Loader2 className="animate-spin mr-2" />
-                                        Connecting to Ivy...
+                                        <Loader2 className="animate-spin mr-2" size={18} />
+                                        Submitting...
                                     </>
                                 ) : (
-                                    "Get Ivy to Call Me"
+                                    "Send Enquiry"
                                 )}
                             </Button>
-                            <p className="text-center text-xs text-gray-500 mt-4">
-                                Experience 24/7 AI availability in under 60 seconds.
+                            <p className="text-center text-[11px] text-gray-500 mt-3">
+                                We respect your privacy. No spam — our team will get back to you within 24 hours.
                             </p>
                         </div>
                     </form>
                 </div>
 
-                {/* RIGHT: PREMIUM CALL INTERFACE SECTION */}
-                <div className="flex-1 bg-gradient-to-br from-gray-900 to-black relative flex items-center justify-center min-h-[600px] lg:min-h-auto p-12 overflow-hidden">
-                    {/* Background Texture/Accents */}
-                    <div className="absolute inset-0 opacity-20"
-                        style={{
-                            backgroundImage: "radial-gradient(circle at 50% 50%, #7FFF00 0.5px, transparent 1px)",
-                            backgroundSize: "24px 24px"
-                        }}
-                    />
+                {/* RIGHT: PROFESSIONAL VALUE & SOLUTIONS PANEL */}
+                <div className="flex-1 bg-gradient-to-br from-gray-900/90 via-black to-[#080808] relative flex flex-col justify-between p-8 md:p-12 lg:p-16 overflow-hidden">
+                    <div className="relative z-10">
+                        <h4 className="text-2xl font-bold text-white mb-2">How EcoInk Helps You Scale</h4>
+                        <p className="text-gray-400 text-sm mb-8">
+                            We build end-to-end growth systems engineered specifically for high-performing service businesses.
+                        </p>
 
-                    {/* Premium Mobile Phone Mockup */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="relative z-10 w-[320px] h-[640px] bg-[#050505] rounded-[3rem] border-[8px] border-[#151515] shadow-[0_0_80px_rgba(0,0,0,1),inset_0_0_20px_rgba(255,255,255,0.05)] overflow-hidden flex flex-col"
-                    >
-                        {/* Notch */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-[#151515] rounded-b-2xl z-30" />
-
-                        {/* Top Content */}
-                        <div className="pt-12 text-center relative z-20">
-                            <p className="text-accent text-[10px] font-bold tracking-[4px] uppercase mb-1">EcoInk Voice AI</p>
-                            <div className="flex items-center justify-center gap-1.5">
-                                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                <span className="text-white/60 text-[9px] font-medium tracking-wider">SECURE CONNECTION LIVE</span>
-                            </div>
-                        </div>
-
-                        {/* Middle: The Animated Orb (Replacing the Girl) */}
-                        <div className="flex-1 relative flex items-center justify-center mt-[-20px]">
-                            <div className="w-full h-[300px] scale-75">
-                                <AnimatedOrb />
-                            </div>
-                        </div>
-
-                        {/* Bottom: Information & Controls */}
-                        <div className="px-8 pb-10 relative z-20 text-center">
-                            <h4 className="text-2xl font-bold text-white mb-1">Ivy</h4>
-                            <p className="text-white/40 text-xs font-medium mb-10 tracking-widest uppercase">EcoInk Senior Agent</p>
-
-                            {/* Control Grid (Mute, Transfer, etc) */}
-                            <div className="grid grid-cols-2 gap-4 mb-10">
-                                {[
-                                    { icon: Volume2, label: "Audio" },
-                                    { icon: Video, label: "Video" },
-                                    { icon: MicOff, label: "Mute" },
-                                    { icon: PhoneForwarded, label: "Transfer" }
-                                ].map((item, i) => (
-                                    <div key={i} className="flex flex-col items-center gap-1.5">
-                                        <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors cursor-pointer ring-1 ring-white/5">
-                                            <item.icon size={20} />
-                                        </div>
-                                        <span className="text-[10px] text-white/40 font-medium">{item.label}</span>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Call Buttons */}
-                            <div className="flex justify-between items-center px-4">
-                                <div className="flex flex-col items-center gap-2">
-                                    <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-red-500/20 active:scale-90 transition-transform cursor-pointer">
-                                        <X size={28} />
-                                    </div>
-                                    <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Decline</span>
+                        <div className="space-y-6">
+                            <div className="flex gap-4 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0 mt-0.5">
+                                    <Phone size={18} />
                                 </div>
-                                <div className="flex flex-col items-center gap-2">
-                                    <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-500/20 active:scale-90 transition-transform cursor-pointer">
-                                        <Phone size={28} />
-                                    </div>
-                                    <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Accept</span>
+                                <div>
+                                    <h5 className="text-white font-bold text-sm">EcoInk Voice AI</h5>
+                                    <p className="text-gray-400 text-xs leading-relaxed mt-0.5">
+                                        24/7 call handling, smart pre-qualification, and instant calendar booking so you never miss high-value jobs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
+                                    <Target size={18} />
+                                </div>
+                                <div>
+                                    <h5 className="text-white font-bold text-sm">EcoInk Ads</h5>
+                                    <p className="text-gray-400 text-xs leading-relaxed mt-0.5">
+                                        Precision Google Ads targeting high-intent searches. Monitored continuously to eliminate wasted budget.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0 mt-0.5">
+                                    <Zap size={18} />
+                                </div>
+                                <div>
+                                    <h5 className="text-white font-bold text-sm">Smart Automations</h5>
+                                    <p className="text-gray-400 text-xs leading-relaxed mt-0.5">
+                                        Automate your CRM workflows (ServiceM8, HubSpot, GHL, Zapier) and eliminate manual handoffs.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Ambient Light Refraction */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-[500px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
+                    <div className="relative z-10 pt-8 mt-8 border-t border-white/5">
+                        <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                                <Mail size={16} />
+                            </div>
+                            <div>
+                                <p className="text-[11px] text-gray-500 uppercase font-semibold">Direct Contact</p>
+                                <p className="text-sm font-medium text-white">james@ecoinkdigital.com</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            {/* Reusable Clean Status Modal */}
+            <SubmissionStatusModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                emailStatus={emailStatus}
+                title="Inquiry Received"
+                description="Thank you! We've received your request and will get back to you shortly."
+            />
         </div>
     );
 };

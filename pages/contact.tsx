@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, BarChart2, Settings } from "lucide-react";
-import EnquiryForm from "@/components/EnquiryForm";
 import StandardContactForm from "@/components/StandardContactForm";
 import { motion } from "framer-motion";
 

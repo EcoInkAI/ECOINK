@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Phone, CheckCircle, Calendar, Clock, RotateCcw, Zap, Database, Globe, ArrowRight, Loader2 } from "lucide-react";
-import EnquiryForm from "@/components/EnquiryForm";
 import VoiceWaveBackground from "@/components/VoiceWaveBackground";
 import SeamlessIntegrationDiagram from "@/components/SeamlessIntegrationDiagram";
 import { motion } from "framer-motion";
