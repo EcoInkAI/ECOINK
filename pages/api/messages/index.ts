@@ -26,9 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Send Email via Resend if configured
         if (resend) {
             try {
-                // Fetch admin contact email from settings or environment
+                // Fetch admin contact email from environment or default to james@ecoinkdigital.com
                 const settings = await prisma.globalSettings.findFirst({ where: { id: 1 } });
-                const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || settings?.contactEmail || "james@ecoinkdigital.com";
+                const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "james@ecoinkdigital.com";
                 const fromEmail = process.env.RESEND_FROM_EMAIL || 'EcoInk <onboarding@resend.dev>';
                 emailStatus.recipient = adminEmail;
 
